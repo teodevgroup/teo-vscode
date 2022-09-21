@@ -1,0 +1,25 @@
+{
+  "name": "teo-vscode",
+  "displayName": "teo-vscode",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.71.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "teo",
+      "aliases": ["Teo", "teo"],
+      "extensions": [".teo"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "teo",
+      "scopeName": "source.teo",
+      "path": "./syntaxes/teo.tmLanguage.json"
+    }]
+  }
+}
