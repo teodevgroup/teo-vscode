@@ -1,21 +1,168 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Teo",
+	"scopeName": "source.teo",
+	"fileTypes": ["teo"],
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#import"
 		},
 		{
+			"include": "#modelBlock"
+		},
+		{
+      "include": "#enumBlock"
+    },
+		{
 			"include": "#strings"
+		},
+		{
+			"include": "#blockComment"
+		},
+		{
+			"include": "#slashComment"
 		}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.teo",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+		"import": {
+			"name": "storage.modifier.import.teo",
+			"patterns": [
+				{
+					"match": "(import)\\s+",
+					"captures": {
+						"1": {
+							"name": "keyword.control.teo"
+						}
+					}
+				},
+				{
+					"include": "strings"
+				}
+			]
 		},
+		"modelBlock": {
+			"begin": "^\\s*(model)\\s+([A-Z][A-Za-z]*[\\w]*)\\s*({)",
+			"beginCaptures": {
+				"1": {
+          "name": "storage.type.model.teo"
+        },
+        "2": {
+          "name": "entity.name.type.model.teo"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.teo"
+        }
+			},
+			"patterns": [
+				{
+					"include": "#blockComment"
+				},
+				{
+					"include": "#slashComment"
+				},
+				{
+					"include": "#fieldDefinition"
+				}
+			],
+			"end": "\\s*\\}",
+			"endCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      }
+		},
+		"fieldDefinition": {
+      "name": "scalar.field",
+      "patterns": [
+        {
+          "match": "^\\s*(\\w+)(\\s*:)?\\s+((?!(?:Int|String|DateTime|Date|Bytes|Decimal|Float|Bool|ObjectId)\\b)\\b\\w+)?(Int|String|DateTime|Date|Bytes|Decimal|Float|Bool|ObjectId)?(\\[\\])?(\\?)?(\\!)?",
+          "captures": {
+            "1": {
+              "name": "variable.other.assignment.teo"
+            },
+            "2": {
+              "name": "invalid.illegal.colon.teo"
+            },
+            "3": {
+              "name": "variable.language.relations.teo"
+            },
+            "4": {
+              "name": "support.type.primitive.teo"
+            },
+            "5": {
+              "name": "keyword.operator.list_type.teo"
+            },
+            "6": {
+              "name": "keyword.operator.optional_type.teo"
+            },
+            "7": {
+              "name": "invalid.illegal.required_type.teo"
+            }
+          }
+        },
+        {
+          "include": "#attributeWithArguments"
+        },
+        {
+          "include": "#attribute"
+        }
+      ]
+    },
+		"enumBlock": {
+			"begin": "^\\s*(enum)\\s+([A-Z][A-Za-z]*[\\w]*)\\s*({)",
+      "name": "source.teo.embedded.source",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.enum.teo"
+        },
+        "2": {
+          "name": "entity.name.type.enum.teo"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+				{
+					"include": "#blockComment"
+				},
+				{
+					"include": "#slashComment"
+				},
+        {
+          "include": "#enum_value_definition"
+        }
+      ],
+      "end": "\\s*\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.prisma"
+        }
+      }
+    },
+		"slashComment": {
+      "begin": "//",
+      "end": "$\\n?",
+      "name": "comment.teo"
+    },
+		"blockComment": {
+			"name": "comment.block.teo",
+			"begin": "/\\*",
+			"end": "\\*/",
+			"patterns": [
+				{
+					"include": "#blockComment"
+				}
+			]
+		},
+		"bools": {
+      "match": "\\b(true|false)\\b",
+      "name": "constant.language.boolean.teo"
+    },
+    "numbers": {
+      "match": "((0(x|X)[0-9a-fA-F]*)|(\\+|-)?\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDdg]|UL|ul)?\\b",
+      "name": "constant.numeric.teo"
+    },
 		"strings": {
 			"name": "string.quoted.double.teo",
 			"begin": "\"",
@@ -26,7 +173,135 @@
 					"match": "\\\\."
 				}
 			]
-		}
-	},
-	"scopeName": "source.teo"
+		},
+		"literal": {
+      "name": "source.teo.literal",
+      "patterns": [
+        {
+          "include": "#bools"
+        },
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#strings"
+        }
+      ]
+    },
+		"attribute": {
+      "name": "source.teo.attribute",
+      "match": "(@@?[\\w\\.]+)",
+      "captures": {
+        "1": {
+          "name": "entity.name.function.attribute.teo"
+        }
+      }
+    },
+		"attributeWithArguments": {
+      "name": "source.teo.attribute.withWrguments",
+      "begin": "(@@?[\\w\\.]+)(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.attribute.teo"
+        },
+        "2": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#namedArgument"
+        },
+        {
+          "include": "#value"
+        }
+      ],
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      }
+    },
+		"builtinTypes": {
+			"name": "storage.type.teo",
+			"match": "\\b(String|Int|Float|Decimal|Bool|Date|DateTime|Bytes|ObjectId)\\b"
+		},
+		"namedArgument": {
+      "name": "source.teo.namedArgument",
+      "patterns": [
+        {
+          "include": "#mapKey"
+        },
+        {
+          "include": "#value"
+        }
+      ]
+    },
+		"enumValueDefinition": {
+      "patterns": [
+        {
+          "match": "^\\s*(\\w+)\\s*",
+          "captures": {
+            "1": {
+              "name": "variable.other.assignment.teo"
+            }
+          }
+        },
+        {
+          "include": "#attributeWithArguments"
+        },
+        {
+          "include": "#attribute"
+        }
+      ]
+    },
+		"mapKey": {
+      "name": "source.teo.key",
+      "patterns": [
+        {
+          "match": "(\\w+)\\s*(:)\\s*",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.key.teo"
+            },
+            "2": {
+              "name": "punctuation.definition.separator.key-value.teo"
+            }
+          }
+        }
+      ]
+    },
+		"value": {
+      "name": "source.teo.value",
+      "patterns": [
+        {
+          "include": "#array"
+        },
+        {
+          "include": "#literal"
+        }
+      ]
+    },
+		"array": {
+      "name": "source.teo.array",
+      "begin": "\\[",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#value"
+        }
+      ],
+      "end": "\\]",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      }
+    }
+	}
 }
