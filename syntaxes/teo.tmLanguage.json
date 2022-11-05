@@ -7,9 +7,21 @@
 		{
 			"include": "#import"
 		},
+    {
+      "include": "#configBlock"
+    },
+    {
+      "include": "#namedConfigBlock"
+    },
+    {
+      "include": "#configKeyword"
+    },
 		{
 			"include": "#modelBlock"
 		},
+    {
+      "include": "#modelKeyword"
+    },
 		{
       "include": "#enumBlock"
     },
@@ -17,11 +29,17 @@
 			"include": "#strings"
 		},
 		{
-			"include": "#blockComment"
+			"include": "#tripleSlashComment"
 		},
 		{
-			"include": "#slashComment"
-		}
+			"include": "#doubleSlashComment"
+		},
+    {
+      "include": "#attributeWithArguments"
+    },
+    {
+      "include": "#attribute"
+    }
 	],
 	"repository": {
 		"import": {
@@ -40,6 +58,115 @@
 				}
 			]
 		},
+    "configKeyword": {
+      "name": "storage.modifier.config.teo",
+      "patterns": [
+        {
+          "match": "(connector|client|generator|config)",
+          "captures": {
+            "1": {
+              "name": "storage.type.config.teo"
+            }
+          }
+        }
+      ]
+    },
+    "modelKeyword": {
+      "name": "storage.modifier.keyword.teo",
+      "patterns": [
+        {
+          "match": "(model)",
+          "captures": {
+            "1": {
+              "name": "storage.type.model.teo"
+            }
+          }
+        }
+      ]
+    },
+    "configBlock": {
+      "begin": "^\\s*(generator|client|connector|config)\\s+({)",
+      "name": "source.teo.embedded.config",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.config.teo"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tripleSlashComment"
+        },
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#configItem"
+        }
+      ],
+      "end": "\\s*\\}",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.prisma"
+        }
+      }
+    },
+    "namedConfigBlock": {
+      "begin": "^\\s*(generator|client|connector|config)\\s+([A-Za-z][\\w]*)\\s+({)",
+      "name": "source.teo.embedded.config",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.config.teo"
+        },
+        "2": {
+          "name": "entity.name.type.config.teo"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tripleSlashComment"
+        },
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#configItem"
+        }
+      ],
+      "end": "\\s*\\}",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.prisma"
+        }
+      }
+    },
+    "configItem": {
+      "name": "source.teo.embedded.source",
+      "patterns": [
+        {
+          "begin": "^\\s*(\\w+)\\s+",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.teo"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#value"
+            },
+            {
+              "include": "#doubleSlashCommentInline"
+            }
+          ],
+          "end": "\\n"
+        }
+      ]
+    },
 		"modelBlock": {
 			"begin": "^\\s*(model)\\s+([A-Z][A-Za-z]*[\\w]*)\\s*({)",
 			"beginCaptures": {
@@ -55,10 +182,10 @@
 			},
 			"patterns": [
 				{
-					"include": "#blockComment"
+					"include": "#tripleSlashComment"
 				},
 				{
-					"include": "#slashComment"
+					"include": "#doubleSlashComment"
 				},
 				{
 					"include": "#fieldDefinition"
@@ -75,13 +202,19 @@
       "name": "scalar.field",
       "patterns": [
         {
-          "match": "^\\s*(\\w+)(\\s*:)?\\s+((?!(?:Int|String|DateTime|Date|Bytes|Decimal|Float|Bool|ObjectId)\\b)\\b\\w+)?(Int|String|DateTime|Date|Bytes|Decimal|Float|Bool|ObjectId)?(\\[\\])?(\\?)?(\\!)?",
+          "include": "#attributeWithArguments"
+        },
+        {
+          "include": "#attribute"
+        },
+        {
+          "match": "^\\s*(\\w+)(\\s*:)\\s*((?!(?:Int|String|DateTime|Date|Bytes|Decimal|Float|Bool|ObjectId)\\b)\\b\\w+)?(Int|String|DateTime|Date|Bytes|Decimal|Float|Bool|ObjectId)?(\\[\\])?(\\?)?(\\!)?",
           "captures": {
             "1": {
               "name": "variable.other.assignment.teo"
             },
             "2": {
-              "name": "invalid.illegal.colon.teo"
+              "name": "punctuation.definition.colon.teo"
             },
             "3": {
               "name": "variable.language.relations.teo"
@@ -99,12 +232,6 @@
               "name": "invalid.illegal.required_type.teo"
             }
           }
-        },
-        {
-          "include": "#attributeWithArguments"
-        },
-        {
-          "include": "#attribute"
         }
       ]
     },
@@ -124,10 +251,10 @@
       },
       "patterns": [
 				{
-					"include": "#blockComment"
+					"include": "#tripleSlashComment"
 				},
 				{
-					"include": "#slashComment"
+					"include": "#doubleSlashComment"
 				},
         {
           "include": "#enum_value_definition"
@@ -140,20 +267,19 @@
         }
       }
     },
-		"slashComment": {
+		"doubleSlashComment": {
       "begin": "//",
       "end": "$\\n?",
       "name": "comment.teo"
     },
-		"blockComment": {
-			"name": "comment.block.teo",
-			"begin": "/\\*",
-			"end": "\\*/",
-			"patterns": [
-				{
-					"include": "#blockComment"
-				}
-			]
+    "doubleSlashCommentInline": {
+      "match": "//[^\\n]*",
+      "name": "comment.teo"
+    },
+		"tripleSlashComment": {
+      "begin": "///",
+      "end": "$\\n?",
+      "name": "comment.teo"
 		},
 		"bools": {
       "match": "\\b(true|false)\\b",
