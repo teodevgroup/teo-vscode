@@ -39,6 +39,9 @@
     },
     {
       "include": "#attribute"
+    },
+    {
+      "include": "#pipeline"
     }
 	],
 	"repository": {
@@ -109,7 +112,7 @@
       "end": "\\s*\\}",
       "endCaptures": {
         "1": {
-          "name": "punctuation.definition.tag.prisma"
+          "name": "punctuation.definition.tag.teo"
         }
       }
     },
@@ -141,7 +144,7 @@
       "end": "\\s*\\}",
       "endCaptures": {
         "1": {
-          "name": "punctuation.definition.tag.prisma"
+          "name": "punctuation.definition.tag.teo"
         }
       }
     },
@@ -263,7 +266,7 @@
       "end": "\\s*\\}",
       "endCaptures": {
         "0": {
-          "name": "punctuation.definition.tag.prisma"
+          "name": "punctuation.definition.tag.teo"
         }
       }
     },
@@ -300,6 +303,10 @@
 				}
 			]
 		},
+    "enumValues": {
+      "name": "variable.other.enummember.teo",
+      "match": "\\.\\w+"
+    },
 		"literal": {
       "name": "source.teo.literal",
       "patterns": [
@@ -311,6 +318,9 @@
         },
         {
           "include": "#strings"
+        },
+        {
+          "include": "#enumValues"
         }
       ]
     },
@@ -351,7 +361,7 @@
     },
 		"builtinTypes": {
 			"name": "storage.type.teo",
-			"match": "\\b(String|Int|Float|Decimal|Bool|Date|DateTime|Bytes|ObjectId)\\b"
+			"match": "\\b(String|Int|Int32|Int64|Int8|Int16|UInt|UInt32|UInt64|UInt8|UInt16|Float|Float32|Float64|Decimal|Bool|Date|DateTime|Bytes|ObjectId)\\b"
 		},
 		"namedArgument": {
       "name": "source.teo.namedArgument",
@@ -406,6 +416,9 @@
         },
         {
           "include": "#literal"
+        },
+        {
+          "include": "#pipeline"
         }
       ]
     },
@@ -428,6 +441,54 @@
           "name": "punctuation.definition.tag.teo"
         }
       }
+    },
+    "pipeline": {
+      "name": "source.teo.pipeline",
+      "patterns": [
+        {
+          "include": "#chainedIdentifier"
+        },
+        {
+          "include": "#chainedFunctionCall"
+        }
+      ]
+    },
+    "chainedIdentifier": {
+      "name": "source.teo.chainedIdentifier",
+      "patterns": [
+        {
+          "match": "(\\.|\\$)(\\w+)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.tag.teo"
+            },
+            "2": {
+              "name": "entity.name.function.attribute.teo"
+            }
+          }
+        }
+      ]
+    },
+    "chainedFunctionCall": {
+      "name": "source.teo.chainedFunctionCall",
+      "begin": "(\\.|\\$)(\\w+)\\(",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        },
+        "2": {
+          "name": "entity.name.function.attribute.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#namedArgument"
+        },
+        {
+          "include": "#value"
+        }
+      ],
+      "end": "\\)"
     }
 	}
 }

@@ -1,13 +1,21 @@
-# teo-vscode README
+# Teo for Visual Studio Code
 
-# Teo VS Code Extension
-Adds syntax highlighting, linting, code completion, formatting,
-jump-to-definition and more for Teo Schema files.
+This extension provides enhanced Teo language and code intellisense support for
+Visual Studio Code.
+
+## Features
+* Syntax highlighting
+* Linting
+* Code completion
+* Formatting
+* Jump to definition
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.2 (Jan 8th, 2022)
 
-### 0.0.1
+Add syntax highlighting for pipelines.
+
+### 0.0.1 (Nov 5th, 2022)
 
 Basic syntax highlighting.
