@@ -12,7 +12,11 @@ Visual Studio Code.
 
 ## Release Notes
 
-### 0.0.2 (Jan 8th, 2022)
+### 0.0.3 (Feb 1st, 2023)
+
+Update syntax highlighting for `entity` keyword.
+
+### 0.0.2 (Jan 8th, 2023)
 
 Add syntax highlighting for pipelines.
 
