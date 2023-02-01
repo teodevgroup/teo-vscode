@@ -65,7 +65,7 @@
       "name": "storage.modifier.config.teo",
       "patterns": [
         {
-          "match": "(connector|client|generator|config)",
+          "match": "(connector|client|entity|config)",
           "captures": {
             "1": {
               "name": "storage.type.config.teo"
