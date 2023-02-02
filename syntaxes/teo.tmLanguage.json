@@ -88,7 +88,7 @@
       ]
     },
     "configBlock": {
-      "begin": "^\\s*(generator|client|connector|config)\\s+({)",
+      "begin": "^\\s*(entity|client|connector|config)\\s+({)",
       "name": "source.teo.embedded.config",
       "beginCaptures": {
         "1": {
@@ -117,7 +117,7 @@
       }
     },
     "namedConfigBlock": {
-      "begin": "^\\s*(generator|client|connector|config)\\s+([A-Za-z][\\w]*)\\s+({)",
+      "begin": "^\\s*(entity|client|connector|config)\\s+([A-Za-z][\\w]*)\\s+({)",
       "name": "source.teo.embedded.config",
       "beginCaptures": {
         "1": {
