@@ -1,9 +1,18 @@
 # Change Log
 
-All notable changes to the "teo-vscode" extension will be documented in this file.
+### 0.0.5 (Feb 3rd, 2023)
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+* Support range literal.
+* Fixed pipeline highlighting bug.
 
-## [Unreleased]
+### 0.0.4 (Feb 1st, 2023)
 
-- Initial release
+* Update syntax highlighting for `entity` keyword.
+
+### 0.0.2 (Jan 8th, 2023)
+
+* Add syntax highlighting for pipelines.
+
+### 0.0.1 (Nov 5th, 2022)
+
+* Basic syntax highlighting.

@@ -65,7 +65,7 @@
       "name": "storage.modifier.config.teo",
       "patterns": [
         {
-          "match": "(connector|client|entity|config)",
+          "match": "(connector|client|entity|server)",
           "captures": {
             "1": {
               "name": "storage.type.config.teo"
@@ -88,7 +88,7 @@
       ]
     },
     "configBlock": {
-      "begin": "^\\s*(entity|client|connector|config)\\s+({)",
+      "begin": "^\\s*(entity|client|connector|server)\\s+({)",
       "name": "source.teo.embedded.config",
       "beginCaptures": {
         "1": {
@@ -117,7 +117,7 @@
       }
     },
     "namedConfigBlock": {
-      "begin": "^\\s*(entity|client|connector|config)\\s+([A-Za-z][\\w]*)\\s+({)",
+      "begin": "^\\s*(entity|client|connector|server)\\s+([A-Za-z][\\w]*)\\s+({)",
       "name": "source.teo.embedded.config",
       "beginCaptures": {
         "1": {
@@ -196,7 +196,7 @@
 			],
 			"end": "\\s*\\}",
 			"endCaptures": {
-        "0": {
+        "1": {
           "name": "punctuation.definition.tag.teo"
         }
       }
@@ -263,9 +263,9 @@
           "include": "#enum_value_definition"
         }
       ],
-      "end": "\\s*\\}",
+      "end": "(\\s*\\})",
       "endCaptures": {
-        "0": {
+        "1": {
           "name": "punctuation.definition.tag.teo"
         }
       }
@@ -284,6 +284,10 @@
       "end": "$\\n?",
       "name": "comment.teo"
 		},
+    "null": {
+      "match": "\\b(null)\\b",
+      "name": "constant.language.null.teo"
+    },
 		"bools": {
       "match": "\\b(true|false)\\b",
       "name": "constant.language.boolean.teo"
@@ -305,11 +309,14 @@
 		},
     "enumValues": {
       "name": "variable.other.enummember.teo",
-      "match": "\\.\\w+"
+      "match": "\\.[^\\d\\W]\\w*"
     },
 		"literal": {
       "name": "source.teo.literal",
       "patterns": [
+        {
+          "include": "#null"
+        },
         {
           "include": "#bools"
         },
@@ -318,9 +325,6 @@
         },
         {
           "include": "#strings"
-        },
-        {
-          "include": "#enumValues"
         }
       ]
     },
@@ -352,9 +356,9 @@
           "include": "#value"
         }
       ],
-      "end": "\\)",
+      "end": "(\\))",
       "endCaptures": {
-        "0": {
+        "1": {
           "name": "punctuation.definition.tag.teo"
         }
       }
@@ -419,8 +423,51 @@
         },
         {
           "include": "#pipeline"
+        },
+        {
+          "include": "#range"
+        },
+        {
+          "include": "#enumValues"
         }
       ]
+    },
+    "valueWithoutRange": {
+      "name": "source.teo.valueWithoutRange",
+      "patterns": [
+        {
+          "include": "#array"
+        },
+        {
+          "include": "#pipeline"
+        },
+        {
+          "include": "#literal"
+        }
+      ]
+    },
+    "range": {
+      "name": "source.teo.range",
+      "match": "([^\\.\\)]+)(\\.{2,3})([^\\.\\)]+)",
+      "captures": {
+        "1": {
+          "patterns": [
+            {
+              "include": "#valueWithoutRange"
+            }
+          ]
+        },
+        "2": {
+          "name": "punctuation.definition.tag.teo"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#valueWithoutRange"
+            }
+          ]
+        }
+      }
     },
 		"array": {
       "name": "source.teo.array",
@@ -446,10 +493,10 @@
       "name": "source.teo.pipeline",
       "patterns": [
         {
-          "include": "#chainedIdentifier"
+          "include": "#chainedFunctionCall"
         },
         {
-          "include": "#chainedFunctionCall"
+          "include": "#chainedIdentifier"
         }
       ]
     },
@@ -457,13 +504,16 @@
       "name": "source.teo.chainedIdentifier",
       "patterns": [
         {
-          "match": "(\\.|\\$)(\\w+)",
+          "match": "(\\$)?(\\w+)(\\.)?",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.teo"
             },
             "2": {
-              "name": "entity.name.function.attribute.teo"
+              "name": "punctuation.definition.tag.teo"
+            },
+            "3": {
+              "name": "punctuation.definition.tag.teo"
             }
           }
         }
@@ -471,13 +521,16 @@
     },
     "chainedFunctionCall": {
       "name": "source.teo.chainedFunctionCall",
-      "begin": "(\\.|\\$)(\\w+)\\(",
+      "begin": "(\\$)?(\\w+)(\\()",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.teo"
         },
         "2": {
-          "name": "entity.name.function.attribute.teo"
+          "name": "punctuation.definition.tag.teo"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.teo"
         }
       },
       "patterns": [
@@ -488,7 +541,15 @@
           "include": "#value"
         }
       ],
-      "end": "\\)"
+      "end": "(\\))(\\.)?",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        },
+        "2": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      }
     }
 	}
 }
