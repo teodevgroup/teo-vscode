@@ -4,9 +4,15 @@
 	"scopeName": "source.teo",
 	"fileTypes": ["teo"],
 	"patterns": [
+    {
+      "include": "#identifierImport"
+    },
 		{
-			"include": "#import"
+			"include": "#fileImport"
 		},
+    {
+      "include": "#importKeyword"
+    },
     {
       "include": "#configBlock"
     },
@@ -45,7 +51,7 @@
     }
 	],
 	"repository": {
-		"import": {
+		"fileImport": {
 			"name": "storage.modifier.import.teo",
 			"patterns": [
 				{
@@ -61,6 +67,53 @@
 				}
 			]
 		},
+    "identifierImport": {
+			"name": "storage.modifier.import.teo",
+      "begin": "(import)\\s+({)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.teo"
+        },
+        "2": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "match": "\\s*(\\w+)\\s*(,?)\\s*",
+          "captures": {
+            "1": {
+              "name": "variable.other.assignment.teo"
+            },
+            "2": {
+              "name": "punctuation.definition.tag.teo"
+            }
+          }
+        }
+      ],
+      "end": "(})\\s+(from)\\s*",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        },
+        "2": {
+          "name": "keyword.control.teo"
+        }
+      }
+    },
+    "importKeyword": {
+      "name": "storage.modifier.config.teo",
+      "patterns": [
+        {
+          "match": "(import)",
+          "captures": {
+            "1": {
+              "name": "storage.type.config.teo"
+            }
+          }
+        }
+      ]
+    },
     "configKeyword": {
       "name": "storage.modifier.config.teo",
       "patterns": [
@@ -94,7 +147,7 @@
         "1": {
           "name": "storage.type.config.teo"
         },
-        "3": {
+        "2": {
           "name": "punctuation.definition.tag.teo"
         }
       },

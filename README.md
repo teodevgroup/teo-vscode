@@ -12,6 +12,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.6 (Feb 6th, 2023)
+
+* Support `let` and `import`
+
 ### 0.0.5 (Feb 3rd, 2023)
 
 * Support range literal.
