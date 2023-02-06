@@ -14,6 +14,9 @@
       "include": "#importKeyword"
     },
     {
+      "include": "#constantDeclaration"
+    },
+    {
       "include": "#configBlock"
     },
     {
@@ -51,6 +54,27 @@
     }
 	],
 	"repository": {
+    "constantDeclaration": {
+      "name": "variable.name.teo",
+      "begin": "(let)\\s+(\\w+)\\s+(=)\\s+",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.teo"
+        },
+        "2": {
+          "name": "variable.name.teo"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#value"
+        }
+      ],
+      "end": "\r\n|\r|\n"
+    },
 		"fileImport": {
 			"name": "storage.modifier.import.teo",
 			"patterns": [
