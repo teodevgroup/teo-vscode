@@ -4,6 +4,7 @@ This extension provides enhanced Teo language and code intellisense support for
 Visual Studio Code.
 
 ## Features
+
 * Syntax highlighting
 * Linting
 * Code completion
@@ -12,15 +13,19 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.7 (Feb 15th, 2023)
+
+* Support highlighting regular expression.
+
 ### 0.0.6 (Feb 6th, 2023)
 
-* Support `let` and `import`
+* Support `let` and `import`.
 
 ### 0.0.5 (Feb 3rd, 2023)
 
 * Support range literal.
 * Fixed pipeline highlighting bug.
-* Support `server` keyword for Teo 0.0.44
+* Support `server` keyword for Teo 0.0.44.
 
 ### 0.0.4 (Feb 1st, 2023)
 

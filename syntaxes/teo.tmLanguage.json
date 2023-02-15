@@ -37,6 +37,9 @@
 		{
 			"include": "#strings"
 		},
+    {
+      "include": "#regexs"
+    },
 		{
 			"include": "#tripleSlashComment"
 		},
@@ -384,6 +387,17 @@
 				}
 			]
 		},
+    "regexs": {
+      "name": "string.regexp.teo",
+      "begin": "/",
+      "end": "/",
+      "patterns": [
+        {
+					"name": "constant.character.escape.teo",
+					"match": "\\\\."
+				}
+      ]
+    },
     "enumValues": {
       "name": "variable.other.enummember.teo",
       "match": "\\.[^\\d\\W]\\w*"
@@ -402,6 +416,9 @@
         },
         {
           "include": "#strings"
+        },
+        {
+          "include": "#regexs"
         }
       ]
     },
