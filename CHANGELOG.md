@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.0.7 (Feb 15th, 2023)
+
+* Support highlighting regular expression.
+
 ### 0.0.6 (Feb 6th, 2023)
 
 * Support `let` and `import`
