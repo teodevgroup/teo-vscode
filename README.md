@@ -15,7 +15,8 @@ Visual Studio Code.
 
 ### 0.0.8 (Jul 29th, 2023)
 
-* Improved highlighting for comments
+* Improved highlighting for comments.
+* Fixed wrong range highlighting in strings.
 
 ### 0.0.7 (Feb 15th, 2023)
 
@@ -42,3 +43,13 @@ Visual Studio Code.
 ### 0.0.1 (Nov 5th, 2022)
 
 * Basic syntax highlighting.
+
+## Bugs
+
+Temporarily removed range from the syntax.
+
+``` js
+    // {
+    //   "include": "#range"
+    // },
+```

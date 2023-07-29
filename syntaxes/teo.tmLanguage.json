@@ -353,16 +353,17 @@
 		"doubleSlashComment": {
       "begin": "//",
       "end": "$\\n?",
-      "name": "comment.teo"
+      "name": "comment.teo.normal"
     },
     "doubleSlashCommentInline": {
-      "match": "//[^\\n]*",
-      "name": "comment.teo"
+      "begin": "//",
+      "end": "$(?=\\n)",
+      "name": "comment.teo.normal.inline"
     },
 		"tripleSlashComment": {
       "begin": "///",
       "end": "$\\n?",
-      "name": "comment.teo"
+      "name": "comment.teo.doc"
 		},
     "null": {
       "match": "\\b(null)\\b",
@@ -389,7 +390,7 @@
 		},
     "regexs": {
       "name": "string.regexp.teo",
-      "begin": "/",
+      "begin": "/(?!/)",
       "end": "/",
       "patterns": [
         {
@@ -459,7 +460,7 @@
     },
 		"builtinTypes": {
 			"name": "storage.type.teo",
-			"match": "\\b(String|Int|Int32|Int64|Int8|Int16|UInt|UInt32|UInt64|UInt8|UInt16|Float|Float32|Float64|Decimal|Bool|Date|DateTime|Bytes|ObjectId)\\b"
+			"match": "\\b(String|Int|Int32|Int64|Float|Float32|Float64|Decimal|Bool|Date|DateTime|Bytes|ObjectId)\\b"
 		},
 		"namedArgument": {
       "name": "source.teo.namedArgument",
@@ -509,6 +510,7 @@
 		"value": {
       "name": "source.teo.value",
       "patterns": [
+
         {
           "include": "#array"
         },
@@ -517,9 +519,6 @@
         },
         {
           "include": "#pipeline"
-        },
-        {
-          "include": "#range"
         },
         {
           "include": "#enumValues"
@@ -601,10 +600,10 @@
           "match": "(\\$)?(\\w+)(\\.)?",
           "captures": {
             "1": {
-              "name": "punctuation.definition.tag.teo"
+              "name": "entity.name.function.attribute.teo"
             },
             "2": {
-              "name": "punctuation.definition.tag.teo"
+              "name": "entity.name.function.attribute.teo"
             },
             "3": {
               "name": "punctuation.definition.tag.teo"
@@ -618,10 +617,10 @@
       "begin": "(\\$)?(\\w+)(\\()",
       "beginCaptures": {
         "1": {
-          "name": "punctuation.definition.tag.teo"
+          "name": "entity.name.function.attribute.teo"
         },
         "2": {
-          "name": "punctuation.definition.tag.teo"
+          "name": "entity.name.function.attribute.teo"
         },
         "3": {
           "name": "punctuation.definition.tag.teo"

@@ -2,7 +2,8 @@
 
 ### 0.0.8 (Jul 29th, 2023)
 
-* Improved highlighting for comments
+* Improved highlighting for comments.
+* Fixed wrong range highlighting in strings.
 
 ### 0.0.7 (Feb 15th, 2023)
 
