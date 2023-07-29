@@ -5,6 +5,12 @@
 	"fileTypes": ["teo"],
 	"patterns": [
     {
+			"include": "#tripleSlashComment"
+		},
+		{
+			"include": "#doubleSlashComment"
+		},
+    {
       "include": "#identifierImport"
     },
 		{
@@ -40,12 +46,6 @@
     {
       "include": "#regexs"
     },
-		{
-			"include": "#tripleSlashComment"
-		},
-		{
-			"include": "#doubleSlashComment"
-		},
     {
       "include": "#attributeWithArguments"
     },

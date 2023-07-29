@@ -1,8 +1,8 @@
 {
   "name": "teo-vscode",
-  "displayName": "teo-vscode",
+  "displayName": "Teo",
   "description": "This extension provides enhanced Teo language and code intellisense support for Visual Studio Code.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "publisher": "yeannylam",
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-# Teo for Visual Studio Code
+# Teo Language Support
 
 This extension provides enhanced Teo language and code intellisense support for
 Visual Studio Code.
@@ -12,6 +12,10 @@ Visual Studio Code.
 * Jump to definition
 
 ## Release Notes
+
+### 0.0.8 (Jul 29th, 2023)
+
+* Improved highlighting for comments
 
 ### 0.0.7 (Feb 15th, 2023)
 
