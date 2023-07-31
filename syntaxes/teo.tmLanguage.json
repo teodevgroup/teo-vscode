@@ -29,6 +29,9 @@
       "include": "#namedConfigBlock"
     },
     {
+      "include": "#datasetBlock"
+    },
+    {
       "include": "#configKeyword"
     },
 		{
@@ -145,7 +148,7 @@
       "name": "storage.modifier.config.teo",
       "patterns": [
         {
-          "match": "(connector|client|entity|server)",
+          "match": "(connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)",
           "captures": {
             "1": {
               "name": "storage.type.config.teo"
@@ -187,6 +190,105 @@
         },
         {
           "include": "#configItem"
+        }
+      ],
+      "end": "\\s*\\}",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      }
+    },
+    "datasetRecordItem": {
+      "begin": "^\\s*(record)\\s+([A-Za-z][\\w]*)\\s+({)",
+      "name": "source.teo.embedded.config",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.config.teo"
+        },
+        "2": {
+          "name": "entity.name.type.config.teo"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tripleSlashComment"
+        },
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#value"
+        },
+        {
+          "include": "#colon"
+        }
+      ],
+      "end": "\\s*\\}",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      }
+    },
+    "datasetGroupItem": {
+      "begin": "^\\s*(group)\\s+([A-Za-z][\\w]*)\\s+({)",
+      "name": "source.teo.embedded.config",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.config.teo"
+        },
+        "2": {
+          "name": "entity.name.type.config.teo"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tripleSlashComment"
+        },
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#datasetRecordItem"
+        }
+      ],
+      "end": "\\s*\\}",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      }
+    },
+    "datasetBlock": {
+      "begin": "^\\s*(autoseed dataset|autoseed|dataset)\\s+([A-Za-z][\\w]*)\\s+({)",
+      "name": "source.teo.embedded.config",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.config.teo"
+        },
+        "2": {
+          "name": "entity.name.type.config.teo"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tripleSlashComment"
+        },
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#datasetGroupItem"
         }
       ],
       "end": "\\s*\\}",
@@ -510,7 +612,9 @@
 		"value": {
       "name": "source.teo.value",
       "patterns": [
-
+        {
+          "include": "#dictionary"
+        },
         {
           "include": "#array"
         },
@@ -559,6 +663,48 @@
               "include": "#valueWithoutRange"
             }
           ]
+        }
+      }
+    },
+    "colon": {
+      "name": "punctuation.definition.colon.teo",
+      "patterns": [
+        {
+          "match": "(:)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.colon.teo"
+            }
+          }
+        }
+      ]
+    },
+    "dictionary": {
+      "name": "source.teo.dictionary",
+      "begin": "\\{",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#tripleSlashComment"
+        },
+        {
+          "include": "#value"
+        },
+        {
+          "include": "#colon"
+        }
+      ],
+      "end": "\\}",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
         }
       }
     },

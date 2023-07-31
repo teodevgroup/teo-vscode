@@ -13,6 +13,9 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.9 (Jul 31st, 2023)
+* Added highlighting for dataset.
+
 ### 0.0.8 (Jul 29th, 2023)
 
 * Improved highlighting for comments.
