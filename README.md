@@ -13,6 +13,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.11 (Aug 6th, 2023)
+
+* Updated action declaration.
+
 ### 0.0.10 (Aug 5th, 2023)
 
 * Added highlighting for interfaces.

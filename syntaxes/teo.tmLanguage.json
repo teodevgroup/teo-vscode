@@ -113,7 +113,7 @@
     },
     "actionDeclaration": {
       "name": "meta.actionDeclaration.teo",
-      "begin": "(declare)\\s+(action)\\s+([A-Za-z_][A-Za-z0-9_]*)\\.([A-Za-z_][A-Za-z0-9_]*)",
+      "begin": "(declare)\\s+(action)\\s+([A-Za-z_][A-Za-z0-9_]*)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.keyword.teo"
@@ -122,9 +122,6 @@
           "name": "storage.modifier.keyword.teo"
         },
         "3": {
-          "name": "entity.name.type.model.teo"
-        },
-        "4": {
           "name": "entity.name.type.model.teo"
         }
       },
