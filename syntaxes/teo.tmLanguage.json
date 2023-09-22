@@ -32,6 +32,9 @@
       "include": "#datasetBlock"
     },
     {
+      "include": "#namespaceBlock"
+    },
+    {
       "include": "#configKeyword"
     },
 		{
@@ -600,6 +603,104 @@
         },
         {
           "include": "#datasetRecordItem"
+        }
+      ],
+      "end": "\\s*\\}",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      }
+    },
+    "namespaceBlock": {
+      "begin": "^\\s*(namespace)\\s+([A-Za-z][\\w]*)\\s+({)",
+      "name": "source.teo.embedded.namespace",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.config.teo"
+        },
+        "2": {
+          "name": "entity.name.type.config.teo"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tripleSlashComment"
+        },
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#identifierImport"
+        },
+        {
+          "include": "#fileImport"
+        },
+        {
+          "include": "#importKeyword"
+        },
+        {
+          "include": "#constantDeclaration"
+        },
+        {
+          "include": "#configBlock"
+        },
+        {
+          "include": "#namedConfigBlock"
+        },
+        {
+          "include": "#datasetBlock"
+        },
+        {
+          "include": "#namespaceBlock"
+        },
+        {
+          "include": "#configKeyword"
+        },
+        {
+          "include": "#modelBlock"
+        },
+        {
+          "include": "#modelKeyword"
+        },
+        {
+          "include": "#enumBlock"
+        },
+        {
+          "include": "#enumKeyword"
+        },
+        {
+          "include": "#interfaceDeclaration"
+        },    
+        {
+          "include": "#middlewareDeclaration"
+        },
+        {
+          "include": "#actionGroupDeclaration"
+        },
+        {
+          "include": "#actionDeclaration"
+        },
+        {
+          "include": "#declareKeyword"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#regexs"
+        },
+        {
+          "include": "#attributeWithArguments"
+        },
+        {
+          "include": "#attribute"
+        },
+        {
+          "include": "#pipeline"
         }
       ],
       "end": "\\s*\\}",

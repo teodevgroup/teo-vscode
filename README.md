@@ -13,6 +13,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.12 (Seg 22nd, 2023)
+
+* Added namespace syntax highlighting.
+
 ### 0.0.11 (Aug 6th, 2023)
 
 * Updated action declaration.
