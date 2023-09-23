@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.0.13 (Seg 23nd, 2023)
+
+* Highlight for namespaced types
+
 ### 0.0.12 (Seg 22nd, 2023)
 
 * Added namespace syntax highlighting.

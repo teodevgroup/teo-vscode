@@ -581,7 +581,7 @@
       }
     },
     "datasetGroupItem": {
-      "begin": "^\\s*(group)\\s+([A-Za-z][\\w]*)\\s+({)",
+      "begin": "^\\s*(group)\\s+([A-Za-z][\\w]*)((\\.)([A-Za-z][\\w]*))*+\\s+({)",
       "name": "source.teo.embedded.config",
       "beginCaptures": {
         "1": {
@@ -590,7 +590,13 @@
         "2": {
           "name": "entity.name.type.config.teo"
         },
-        "3": {
+        "4": {
+          "name": "punctuation.definition.dot.teo"
+        },
+        "5": {
+          "name": "entity.name.type.config.teo"
+        },
+        "6": {
           "name": "punctuation.definition.tag.teo"
         }
       },
@@ -837,7 +843,7 @@
           "include": "#attribute"
         },
         {
-          "match": "^\\s*(\\w+)(\\s*:)\\s*((?!(?:Int|String|DateTime|Date|Bytes|Decimal|Float|Bool|ObjectId)\\b)\\b\\w+)?(Int|String|DateTime|Date|Bytes|Decimal|Float|Bool|ObjectId)?(\\[\\])?(\\?)?(\\!)?",
+          "match": "^\\s*(\\w+)(\\s*:)\\s*((?!(?:Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId)\\b)\\b[\\w]+)?*(Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId)?((\\.)(\\w+))*(\\[\\])?(\\?)?(\\!)?",
           "captures": {
             "1": {
               "name": "variable.other.assignment.teo"
@@ -851,13 +857,19 @@
             "4": {
               "name": "support.type.primitive.teo"
             },
-            "5": {
-              "name": "keyword.operator.list_type.teo"
-            },
             "6": {
-              "name": "keyword.operator.optional_type.teo"
+              "name": "punctuation.definition.dot.teo"
             },
             "7": {
+              "name": "variable.language.relations.teo"
+            },
+            "8": {
+              "name": "keyword.operator.list_type.teo"
+            },
+            "9": {
+              "name": "keyword.operator.optional_type.teo"
+            },
+            "10": {
               "name": "invalid.illegal.required_type.teo"
             }
           }
