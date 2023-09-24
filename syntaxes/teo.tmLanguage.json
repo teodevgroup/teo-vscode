@@ -1085,6 +1085,9 @@
         },
         {
           "include": "#enumValues"
+        },
+        {
+          "include": "#tuple"
         }
       ]
     },
@@ -1178,9 +1181,41 @@
       "patterns": [
         {
           "include": "#value"
+        },
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#tripleSlashComment"
         }
       ],
       "end": "\\]",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      }
+    },
+    "tuple": {
+      "name": "source.teo.array",
+      "begin": "\\(",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#value"
+        },
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#tripleSlashComment"
+        }
+      ],
+      "end": "\\)",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag.teo"

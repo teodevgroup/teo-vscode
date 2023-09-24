@@ -2,7 +2,7 @@
   "name": "teo-vscode",
   "displayName": "Teo",
   "description": "Teo language support",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "publisher": "yeannylam",
   "repository": {
     "type": "git",
