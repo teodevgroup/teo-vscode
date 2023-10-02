@@ -21,7 +21,7 @@ import { TeoVSCodePlugin } from '../types'
 import { createLanguageServer } from './create'
 
 let client: LanguageClient
-let serverModule: string = require.resolve('teo-language-server/dist/src/bin')
+let serverModule: string = require.resolve('@teocloud/teo-language-server/dist/src/bin')
 
 const isDebugMode = () => process.env.VSCODE_DEBUG_MODE === 'true'
 

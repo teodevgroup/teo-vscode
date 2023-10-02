@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const node_1 = require("vscode-languageclient/node");
 const create_1 = require("./create");
 let client;
-let serverModule = require.resolve('teo-language-server/dist/src/bin');
+let serverModule = require.resolve('@teocloud/teo-language-server/dist/src/bin');
 const isDebugMode = () => process.env.VSCODE_DEBUG_MODE === 'true';
 const activateClient = (context, serverOptions, clientOptions) => {
     // Create the language client

@@ -1,5 +1,10 @@
 # Change Log
 
+### 0.0.15 (Oct 3rd, 2023)
+
+* Added code diagnostics for importing an unexisting file
+* Added code diagnostics for duplicated model definitions
+
 ### 0.0.14 (Seg 24nd, 2023)
 
 * Highlight for comments in tuple and array literals
