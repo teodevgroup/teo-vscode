@@ -9,7 +9,7 @@
     "url": "https://github.com/victorteokw/teo-vscode.git"
   },
   "engines": {
-    "vscode": "^1.71.0"
+    "vscode": "^1.82.0"
   },
   "scripts": {
     "build": "tsc"
