@@ -11,20 +11,44 @@
   "engines": {
     "vscode": "^1.71.0"
   },
+  "scripts": {
+    "build": "tsc"
+  },
+  "main": "./dist/src/extension.js",
   "categories": [
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "teo",
-      "aliases": ["Teo", "teo", "TEO"],
-      "extensions": [".teo"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "teo",
-      "scopeName": "source.teo",
-      "path": "./syntaxes/teo.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "teo",
+        "aliases": [
+          "Teo",
+          "teo",
+          "TEO"
+        ],
+        "extensions": [
+          ".teo"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "teo",
+        "scopeName": "source.teo",
+        "path": "./syntaxes/teo.tmLanguage.json"
+      }
+    ]
+  },
+  "dependencies": {
+    "teo-language-server": "../teo-language-server",
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "@types/vscode": "^1.82.0",
+    "@vscode/vsce": "^2.21.1",
+    "typescript": "^5.2.2"
   }
 }

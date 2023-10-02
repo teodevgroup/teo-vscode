@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noUnusedLocals": false,
+        "target": "es6",
+        "outDir": "dist",
+        "lib": [
+            "es6"
+        ],
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "strict": false,
+        "composite": true,
+        "declaration": true,
+        "skipLibCheck": true,
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        ".vscode-test"
+    ]
+}
