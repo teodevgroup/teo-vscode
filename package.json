@@ -15,6 +15,9 @@
     "build": "tsc"
   },
   "main": "./dist/src/extension.js",
+  "activationEvents": [
+		"onLanguage:teo"
+	],
   "categories": [
     "Programming Languages"
   ],
