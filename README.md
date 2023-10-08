@@ -13,7 +13,7 @@ Visual Studio Code.
 
 ## Release Notes
 
-### 0.0.16 (Oct 8th, 2023)
+### 0.0.16 (Oct 9th, 2023)
 
 * Added highlights for newly added syntaxes
 * Auto complete decorators
