@@ -53,6 +53,18 @@
       "include": "#interfaceDeclaration"
     },    
     {
+      "include": "#structDeclaration"
+    },
+    {
+      "include": "#configDeclaration"
+    },
+    {
+      "include": "#decoratorDeclaration"
+    },
+    {
+      "include": "#pipelineDeclaration"
+    },
+    {
       "include": "#middlewareDeclaration"
     },
     {
@@ -255,6 +267,146 @@
         "1": { "name": "punctuation.accessor.teo" },
         "2": { "name": "punctuation.accessor.optional.teo" }
       }
+    },
+    "decoratorDeclaration": {
+      "begin": "(declare)\\s*(unique|exclusive)?\\s*(model|interface|enum)?\\s*(field|member|property|relation)?\\s*(decorator)\\s+(\\w+)",
+      "beginCaptures": {
+        "1": { "name": "storage.modifier.declare.teo" },
+        "2": { "name": "storage.modifier.declare.teo" },
+        "3": { "name": "storage.modifier.declare.teo" },
+        "4": { "name": "storage.modifier.declare.teo" },
+        "5": { "name": "storage.modifier.declare.teo" },
+        "6": { "name": "entity.name.function.teo" }
+      },
+      "patterns": [
+        {
+          "include": "#argumentListDeclaration"
+        }
+      ],
+      "end": "\n"
+    },
+    "pipelineDeclaration": {
+
+    },
+    "argumentListDeclaration": {
+      "begin": "(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      },
+      "patterns": [
+
+      ],
+      "end": "(\\))",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.teo"
+        }
+      }
+    },
+    "configDeclaration": {
+      "begin": "(declare)\\s+(config)\\s+(\\w+)\\s*(\\{)",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.declare.teo"
+        },
+        "2": {
+          "name": "storage.modifier.config.teo"
+        },
+        "3": {
+          "name": "entity.name.class.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tripleSlashComment"
+        },
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#fieldDefinition"
+        }
+      ],
+      "end": "\\}"
+    },
+    "structDeclaration": {
+      "name": "entity.name.class.teo",
+      "begin": "(declare)\\s+(struct)\\s+(\\w+)\\s*",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.declare.teo"
+        },
+        "2": {
+          "name": "storage.modifier.struct.teo"
+        },
+        "3": {
+          "name": "entity.name.class.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#tripleSlashComment"
+        },
+        {
+          "include": "#structBody"
+        }
+      ],
+      "end": "(?<=\\})"
+    },
+    "structBody": {
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.block.teo" }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.block.teo" }
+      },
+      "patterns": [
+        {
+          "include": "#doubleSlashComment"
+        },
+        {
+          "include": "#tripleSlashComment"
+        },
+        {
+					"include": "#functionDeclaration"
+				}
+      ]
+    },
+    "functionDeclaration": {
+      "begin": "(declare)(\\s+(static))?\\s+(function)\\s+(\\w+) {",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.declare.teo"
+        },
+        "3": {
+          "name": "storage.type.static.teo"
+        },
+        "4": { 
+          "name": "storage.type.function.teo"
+        },
+        "5": {
+          "name": "entity.name.function.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#argumentListDeclaration"
+        },
+        {
+          "include": "#colon"
+        },
+        {
+          "include": "#typeExpression"
+        }
+      ],
+      "end": "(?<=\\\n)"
     },
     "interfaceDeclaration": {
       "name": "meta.interface.teo",
@@ -682,6 +834,18 @@
           "include": "#interfaceDeclaration"
         },    
         {
+          "include": "#structDeclaration"
+        },
+        {
+          "include": "#configDeclaration"
+        },
+        {
+          "include": "#decoratorDeclaration"
+        },
+        {
+          "include": "#pipelineDeclaration"
+        },
+        {
           "include": "#middlewareDeclaration"
         },
         {
@@ -877,19 +1041,22 @@
       ]
     },
 		"enumBlock": {
-			"begin": "^\\s*(interface)?\\s*(enum)\\s+([A-Z][A-Za-z]*[\\w]*)\\s*({)",
+			"begin": "^\\s*(interface)?\\s*(option)?\\s*(enum)\\s+([A-Z][A-Za-z]*[\\w]*)\\s*({)",
       "name": "source.teo.embedded.source",
       "beginCaptures": {
         "1": {
           "name": "storage.type.modifier.teo"
         },
         "2": {
-          "name": "storage.type.enum.teo"
+          "name": "storage.type.option.teo"
         },
         "3": {
-          "name": "entity.name.type.enum.teo"
+          "name": "storage.type.enum.teo"
         },
         "4": {
+          "name": "entity.name.type.enum.teo"
+        },
+        "5": {
           "name": "punctuation.definition.tag.teo"
         }
       },

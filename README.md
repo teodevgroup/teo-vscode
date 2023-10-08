@@ -13,6 +13,12 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.16 (Oct 8th, 2023)
+
+* Added highlights for newly added syntaxes
+* Auto complete decorators
+* Jump to imported files
+
 ### 0.0.15 (Oct 3rd, 2023)
 
 * Added code diagnostics for importing an unexisting file
@@ -72,13 +78,3 @@ Visual Studio Code.
 ### 0.0.1 (Nov 5th, 2022)
 
 * Basic syntax highlighting.
-
-## Bugs
-
-Temporarily removed range from the syntax.
-
-``` js
-    // {
-    //   "include": "#range"
-    // },
-```
