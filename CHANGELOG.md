@@ -1,5 +1,16 @@
 # Change Log
 
+### 0.0.17 (Oct 12th, 2023)
+
+* Added code diagnostics for relations
+* Added code diagnostics for some pipeline items
+
+### 0.0.16 (Oct 9th, 2023)
+
+* Added highlights for newly added syntaxes
+* Auto complete decorators
+* Jump to imported files
+
 ### 0.0.15 (Oct 3rd, 2023)
 
 * Added code diagnostics for importing an unexisting file

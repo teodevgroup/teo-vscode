@@ -13,6 +13,11 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.17 (Oct 12th, 2023)
+
+* Added code diagnostics for relations
+* Added code diagnostics for some pipeline items
+
 ### 0.0.16 (Oct 9th, 2023)
 
 * Added highlights for newly added syntaxes
