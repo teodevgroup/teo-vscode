@@ -8,7 +8,6 @@ Visual Studio Code.
 * Syntax highlighting
 * Linting
 * Code completion
-* Formatting
 * Jump to definition
 
 ## Release Notes
