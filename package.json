@@ -16,11 +16,6 @@
   },
   "main": "./dist/src/extension.js",
   "icon": "./images/icon.png",
-  "files": [
-    "./dist/**/*",
-    "./iamges/**/*",
-    "./syntaxes/**/*"
-  ],
   "activationEvents": [
 		"onLanguage:teo"
 	],
