@@ -12,10 +12,11 @@ Visual Studio Code.
 
 ## Release Notes
 
-### 0.0.18 (Oct 14th, 2023)
+### 0.0.18 (Oct 16th, 2023)
 
 * Improved diagnostic messages for pipeline items
 * Jump to definition
+* Diagnostic messages for struct functions
 
 ### 0.0.17 (Oct 12th, 2023)
 
