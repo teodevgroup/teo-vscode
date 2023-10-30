@@ -12,6 +12,17 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.19 (Nov ??, 2023)
+
+* Support enum member with arguments
+* Support force unwrap operator
+* Auto completion
+* Added database types
+* Support handler decorators
+* Support availability flags
+* Added `DataSet` type
+* Support inferred model inputs
+
 ### 0.0.18 (Oct 16th, 2023)
 
 * Improved diagnostic messages for pipeline items

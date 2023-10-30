@@ -46,7 +46,7 @@
     ]
   },
   "dependencies": {
-    "@teocloud/teo-language-server": "^0.0.15",
+    "@teocloud/teo-language-server": "../teo-language-server",
     "vscode-languageclient": "^9.0.1"
   },
   "devDependencies": {
