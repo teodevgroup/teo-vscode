@@ -12,7 +12,7 @@ Visual Studio Code.
 
 ## Release Notes
 
-### 0.0.19 (Nov 8, 2023)
+### 0.0.19 (Nov 7, 2023)
 
 * Support enum member with arguments
 * Support force unwrap operator
