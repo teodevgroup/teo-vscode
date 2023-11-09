@@ -12,6 +12,15 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.20
+
+* Support type syntax `(T | U)[]?`
+* Added filter interfaces
+* `null` doesn't pass `Optional` type anymore, ignore instead
+* Support identifiers that start with underscore
+* Added type coerce
+* Improve stability
+
 ### 0.0.19 (Nov 7, 2023)
 
 * Support enum member with arguments
@@ -45,57 +54,57 @@ Visual Studio Code.
 * Added code diagnostics for importing an unexisting file
 * Added code diagnostics for duplicated model definitions
 
-### 0.0.14 (Seg 24nd, 2023)
+### 0.0.14 (Sep 24nd, 2023)
 
 * Highlight for comments in tuple and array literals
 
-### 0.0.13 (Seg 23nd, 2023)
+### 0.0.13 (Sep 23nd, 2023)
 
 * Highlight for namespaced types
 
-### 0.0.12 (Seg 22nd, 2023)
+### 0.0.12 (Sep 22nd, 2023)
 
-* Added namespace syntax highlighting.
+* Added namespace syntax highlighting
 
 ### 0.0.11 (Aug 6th, 2023)
 
-* Updated action declaration.
+* Updated action declaration
 
 ### 0.0.10 (Aug 5th, 2023)
 
-* Added highlighting for interfaces.
+* Added highlighting for interfaces
 
 ### 0.0.9 (Jul 31st, 2023)
 
-* Added highlighting for dataset.
+* Added highlighting for dataset
 
 ### 0.0.8 (Jul 29th, 2023)
 
-* Improved highlighting for comments.
-* Fixed wrong range highlighting in strings.
+* Improved highlighting for comments
+* Fixed wrong range highlighting in strings
 
 ### 0.0.7 (Feb 15th, 2023)
 
-* Support highlighting regular expression.
+* Support highlighting regular expression
 
 ### 0.0.6 (Feb 6th, 2023)
 
-* Support `let` and `import`.
+* Support `let` and `import`
 
 ### 0.0.5 (Feb 3rd, 2023)
 
-* Support range literal.
-* Fixed pipeline highlighting bug.
-* Support `server` keyword for Teo 0.0.44.
+* Support range literal
+* Fixed pipeline highlighting bug
+* Support `server` keyword for Teo 0.0.44
 
 ### 0.0.4 (Feb 1st, 2023)
 
-* Update syntax highlighting for `entity` keyword.
+* Update syntax highlighting for `entity` keyword
 
 ### 0.0.2 (Jan 8th, 2023)
 
-* Add syntax highlighting for pipelines.
+* Add syntax highlighting for pipelines
 
 ### 0.0.1 (Nov 5th, 2022)
 
-* Basic syntax highlighting.
+* Basic syntax highlighting
