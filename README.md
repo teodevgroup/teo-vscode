@@ -9,6 +9,7 @@ Visual Studio Code.
 * Linting
 * Code completion
 * Jump to definition
+* Source code format
 
 ## Release Notes
 
@@ -20,6 +21,7 @@ Visual Studio Code.
 * Support identifiers that start with underscore
 * Added type coerce
 * Improve stability
+* File format
 
 ### 0.0.19 (Nov 7, 2023)
 
