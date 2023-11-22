@@ -20,6 +20,8 @@ Visual Studio Code.
 * `null` doesn't pass `Optional` type anymore, ignore instead
 * Support identifiers that start with underscore
 * Added type coerce
+* Dictionary literal is aligned with TypeScript object literal
+* Jump to argument list declaration names
 * Improve stability
 * File format
 
