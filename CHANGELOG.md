@@ -1,5 +1,18 @@
 ## CHANGELOG
 
+### 0.0.20 (Nov 30th, 2023)
+
+* Support type syntax `(T | U)[]?`
+* Added filter interfaces
+* Added interface enum
+* `null` doesn't pass `Optional` type anymore, ignore instead
+* Support identifiers that start with underscore
+* Added type coerce
+* Dictionary literal is aligned with TypeScript object literal
+* Jump to argument list declaration names
+* Improve stability
+* File format
+
 ### 0.0.19 (Nov 7, 2023)
 
 * Support enum member with arguments
