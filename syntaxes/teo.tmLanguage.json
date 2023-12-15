@@ -4,39 +4,6 @@
 	"scopeName": "source.teo",
 	"fileTypes": ["teo"],
 	"patterns": [
-    {
-			"include": "#tripleSlashComment"
-		},
-		{
-			"include": "#doubleSlashComment"
-		},
-    {
-      "include": "#identifierImport"
-    },
-		{
-			"include": "#fileImport"
-		},
-    {
-      "include": "#importKeyword"
-    },
-    {
-      "include": "#constantDeclaration"
-    },
-    {
-      "include": "#configBlock"
-    },
-    {
-      "include": "#namedConfigBlock"
-    },
-    {
-      "include": "#datasetBlock"
-    },
-    {
-      "include": "#namespaceBlock"
-    },
-    {
-      "include": "#configKeyword"
-    },
 		{
 			"include": "#modelBlock"
 		},
@@ -173,41 +140,6 @@
       ],
       "end": "\n"
     },
-    "interfaceHeritage": {
-      "name": "meta.interfaceHeritage.teo",
-      "begin": "\\s*(extends)\\s*",
-      "beginCaptures": {
-        "1": { 
-          "name": "storage.modifier.teo" 
-        }
-      },
-      "end": "(?=\\{)",
-      "patterns": [
-        {
-          "include": "#doubleSlashComment"
-        },
-        {
-          "include": "#tripleSlashComment"
-        },
-        {
-          "match": "[A-Za-z_][A-Za-z0-9_]*",
-          "captures": {
-            "0": {
-              "name": "entity.other.inherited-class.teo"
-            }
-          }
-        },
-        {
-          "include": "#interfaceHeritage"
-        },
-        {
-          "include": "#typeParameters"
-        },
-        {
-          "include": "#expressionPunctuations"
-        }
-      ]
-    },
     "typeExpressionNesting": {
       "name": "meta.type.expression.nesting.teo",
       "begin": "(<)",
@@ -242,50 +174,6 @@
               "name": "entity.name.type.interface.teo"
             }
           }
-        }
-      ]
-    },
-    "typeParameters": {
-      "name": "meta.type.parameters.teo",
-      "begin": "(<)",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.typeparameters.begin.teo"
-        }
-      },
-      "end": "(>)",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.typeparameters.end.teo"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#doubleSlashComment"
-        },
-        {
-          "include": "#tripleSlashComment"
-        },
-        {
-          "include": "#punctuation-comma"
-        },
-        {
-          "match": "[A-Za-z_][A-Za-z0-9_]*",
-          "captures": {
-            "0": {
-              "name": "entity.name.type.interface.teo"
-            }
-          }
-        }
-      ]
-    },
-    "expressionPunctuations": {
-      "patterns": [
-        {
-          "include": "#punctuation-comma"
-        },
-        {
-          "include": "#punctuation-accessor"
         }
       ]
     },
@@ -572,86 +460,6 @@
       ],
       "end": "(?<=\\\n)"
     },
-    "interfaceDeclaration": {
-      "name": "meta.interface.teo",
-      "begin": "(interface)\\s+(\\w+)",
-      "beginCaptures": {
-        "1": {
-          "name": "storage.modifier.teo"
-        },
-        "2": {
-          "name": "entity.name.type.interface.teo"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#doubleSlashComment"
-        },
-        {
-          "include": "#tripleSlashComment"
-        },
-        {
-          "include": "#interfaceHeritage"
-        },
-        {
-          "match": "([A-Za-z_][A-Za-z0-9_]*)",
-          "captures": {
-            "1": {
-              "name": "entity.name.type.interface.teo"
-            }
-          }
-        },
-        {
-          "include": "#typeParameters"
-        },
-        {
-          "include": "#interfaceBody"
-        }
-      ],
-      "end": "(?<=\\})"
-    },
-    "interfaceBody": {
-      "begin": "\\{",
-      "beginCaptures": {
-        "0": { "name": "punctuation.definition.block.teo" }
-      },
-      "end": "\\}",
-      "endCaptures": {
-        "0": { "name": "punctuation.definition.block.teo" }
-      },
-      "patterns": [
-        {
-          "include": "#doubleSlashComment"
-        },
-        {
-          "include": "#tripleSlashComment"
-        },
-        {
-					"include": "#fieldDefinition"
-				}
-      ]
-    },
-    "constantDeclaration": {
-      "name": "variable.name.teo",
-      "begin": "(let)\\s+(\\w+)\\s+(=)\\s+",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.control.teo"
-        },
-        "2": {
-          "name": "variable.name.teo"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.teo"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#value"
-        }
-      ],
-      "end": "\r\n|\r|\n"
-    },
     "declareKeyword": {
       "name": "storage.modifier.keyword.teo",
       "patterns": [
@@ -782,79 +590,6 @@
         }
       ]
     },
-    "datasetRecordItem": {
-      "begin": "^\\s*(record)\\s+([A-Za-z][\\w]*)\\s+({)",
-      "name": "source.teo.embedded.config",
-      "beginCaptures": {
-        "1": {
-          "name": "storage.type.config.teo"
-        },
-        "2": {
-          "name": "entity.name.type.config.teo"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.teo"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#tripleSlashComment"
-        },
-        {
-          "include": "#doubleSlashComment"
-        },
-        {
-          "include": "#value"
-        },
-        {
-          "include": "#colon"
-        }
-      ],
-      "end": "\\s*\\}",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.teo"
-        }
-      }
-    },
-    "datasetGroupItem": {
-      "begin": "^\\s*(group)\\s+([A-Za-z][\\w]*)((\\.)([A-Za-z][\\w]*))*+\\s+({)",
-      "name": "source.teo.embedded.config",
-      "beginCaptures": {
-        "1": {
-          "name": "storage.type.config.teo"
-        },
-        "2": {
-          "name": "entity.name.type.config.teo"
-        },
-        "4": {
-          "name": "punctuation.definition.dot.teo"
-        },
-        "5": {
-          "name": "entity.name.type.config.teo"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.teo"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#tripleSlashComment"
-        },
-        {
-          "include": "#doubleSlashComment"
-        },
-        {
-          "include": "#datasetRecordItem"
-        }
-      ],
-      "end": "\\s*\\}",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.teo"
-        }
-      }
-    },
     "namespaceBlock": {
       "begin": "^\\s*(namespace)\\s+([A-Za-z][\\w]*)\\s+({)",
       "name": "source.teo.embedded.namespace",
@@ -967,113 +702,6 @@
           "name": "punctuation.definition.tag.teo"
         }
       }
-    },
-    "datasetBlock": {
-      "begin": "^\\s*(autoseed dataset|autoseed|dataset)\\s+([A-Za-z][\\w]*)\\s+({)",
-      "name": "source.teo.embedded.config",
-      "beginCaptures": {
-        "1": {
-          "name": "storage.type.config.teo"
-        },
-        "2": {
-          "name": "entity.name.type.config.teo"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.teo"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#tripleSlashComment"
-        },
-        {
-          "include": "#doubleSlashComment"
-        },
-        {
-          "include": "#datasetGroupItem"
-        }
-      ],
-      "end": "\\s*\\}",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.teo"
-        }
-      }
-    },
-
-		"modelBlock": {
-			"begin": "^\\s*(model)\\s+([A-Z][A-Za-z]*[\\w]*)\\s*({)",
-			"beginCaptures": {
-				"1": {
-          "name": "storage.type.model.teo"
-        },
-        "2": {
-          "name": "entity.name.type.model.teo"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.teo"
-        }
-			},
-			"patterns": [
-				{
-					"include": "#tripleSlashComment"
-				},
-				{
-					"include": "#doubleSlashComment"
-				},
-				{
-					"include": "#fieldDefinition"
-				}
-			],
-			"end": "\\s*\\}",
-			"endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.teo"
-        }
-      }
-		},
-		"fieldDefinition": {
-      "name": "scalar.field",
-      "patterns": [
-        {
-          "include": "#attributeWithArguments"
-        },
-        {
-          "include": "#attribute"
-        },
-        {
-          "match": "^\\s*(\\w+)(\\s*:)\\s*((?!(?:Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId)\\b)\\b[\\w]+)?*(Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId)?((\\.)(\\w+))*(\\[\\])?(\\?)?(\\!)?",
-          "captures": {
-            "1": {
-              "name": "variable.other.assignment.teo"
-            },
-            "2": {
-              "name": "punctuation.definition.colon.teo"
-            },
-            "3": {
-              "name": "variable.language.relations.teo"
-            },
-            "4": {
-              "name": "support.type.primitive.teo"
-            },
-            "6": {
-              "name": "punctuation.definition.dot.teo"
-            },
-            "7": {
-              "name": "variable.language.relations.teo"
-            },
-            "8": {
-              "name": "keyword.operator.list_type.teo"
-            },
-            "9": {
-              "name": "keyword.operator.optional_type.teo"
-            },
-            "10": {
-              "name": "invalid.illegal.required_type.teo"
-            }
-          }
-        }
-      ]
     },
 		"enumBlock": {
 			"begin": "^\\s*(interface)?\\s*(option)?\\s*(enum)\\s+([A-Z][A-Za-z]*[\\w]*)\\s*({)",

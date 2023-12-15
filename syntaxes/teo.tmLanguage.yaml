@@ -6,12 +6,19 @@ fileTypes:
 
 variables:
   configKeywords: (entity|client|connector|server|debug|test)
+  builtinTypes: Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId
 
 patterns:
   - include: "#docComment"
   - include: "#codeComment"
   - include: "#importStatement"
   - include: "#namespaceStatement"
+  - include: "#configStatement"
+  - include: "#dataSetStatement"
+  - include: "#modelDeclaration"
+  - include: "#enumDeclaration"
+  - include: "#interfaceDeclaration"
+  - include: "#structDeclaration"  
 
 repository:
   # comments
@@ -50,6 +57,10 @@ repository:
   arrow:
     name: punctuation.definition.arrow.teo
     match: ->
+  expressionPunctuations:
+    patterns:
+      - include: "#comma"
+      - include: "#accessor"
   # literals
   nullLiteral:
     name: constant.language.null.teo
@@ -206,6 +217,12 @@ repository:
       - include: "#docComment"
       - include: "#codeComment"
       - include: "#namespaceStatement"
+      - include: "#configStatement"
+      - include: "#dataSetStatement"
+      - include: "#modelDeclaration"
+      - include: "#enumDeclaration"
+      - include: "#interfaceDeclaration"
+      - include: "#structDeclaration"
   constantStatement:
     name: variable.name.teo
     begin: (let)\s+([_\w]+)\s+(=)\s+
@@ -237,5 +254,181 @@ repository:
       - include: "#codeComment"
       - include: "#expression"
       - include: "#colon"
-    
-
+  dataSetStatement:
+    name: source.teo.embedded.dataSet
+    begin: ^\s*(autoseed dataset|autoseed|dataset)\s+([A-Za-z][\\w]*)\s+({)
+    beginCaptures:
+      1:
+        name: storage.type.config.teo
+      2:
+        name: entity.name.type.config.teo
+      3:
+        name: punctuation.definition.tag.teo
+    end: \s*\}
+    endCaptures:
+      1:
+        name: punctuation.definition.tag.teo
+    patterns:
+      1:
+        name: docComment
+      2:
+        name: codeComment
+      3:
+        name: dataSetGroupStatement
+  dataSetGroupStatement:
+    name: source.teo.embedded.dataSetGroup
+    begin: ^\s*(group)\s+([A-Za-z][\w]*)((\.)([A-Za-z][\w]*))*+\s+({)
+    beginCaptures:
+      1: 
+        name: storage.type.config.teo
+      2:
+        name: entity.name.type.config.teo
+      4:
+        name: punctuation.definition.dot.teo
+      5:
+        name: entity.name.type.config.teo
+      6:
+        name: punctuation.definition.tag.teo
+    end: \s*\}
+    endCaptures:
+      1:
+        name: punctuation.definition.tag.teo
+    patterns:
+      - include: "#docComment"
+      - include: "#codeComment"
+      - include: "#dataSetRecordStatement"
+  dataSetRecordStatement:
+    name: source.teo.embedded.config
+    begin: ^\s*(record)\s+([A-Za-z][\w]*)\s+({)
+    beginCaptures:
+      1:
+        name: storage.type.config.teo
+      2:
+        name: entity.name.type.config.teo
+      3:
+        name: punctuation.definition.tag.teo
+    end: \s*\}
+    endCaptures:
+      1:
+        name: punctuation.definition.tag.teo
+    patterns:
+      - include: "#docComment"
+      - include: "#codeComment"
+      - include: "#expression"
+      - include: "#colon"
+  # declarations
+  modelDeclaration:
+    name: source.teo.embedded.model
+    begin: ^\s*(model)\s+([A-Z][A-Za-z]*[\w]*)\s*({)
+    beginCaptures:
+      1:
+        name: storage.type.model.teo
+      2:
+        name: entity.name.type.model.teo
+      3:
+        name: punctuation.definition.tag.teo
+    end: \s*\}
+    endCaptures:
+      1:
+        name: punctuation.definition.tag.teo
+    patterns:
+      - include: "#docComment"
+      - include: "#codeComment"
+      - include: "#fieldDeclaration"
+      - include: "#handlerDeclaration"
+  fieldDeclaration:
+    name: source.teo.embedded.scalar.field
+    patterns:
+      - include: "#decoratorWithArguments"
+      - include: "#decorator"
+      -
+        match: ^\s*(\w+)(\s*:)\s*((?!(?:{{builtinTypes}})\\b)\\b[\\w]+)?*({{builtinTypes}})?((\\.)(\\w+))*(\\[\\])?(\\?)?(\\!)?
+        captures:
+          1:
+            name: variable.other.assignment.teo
+          2:
+            name: punctuation.definition.colon.teo
+          3:
+            name: variable.language.relations.teo
+          4:
+            name: support.type.primitive.teo
+          6:
+            name: punctuation.definition.dot.teo
+          7:
+            name: variable.language.relations.teo
+          8:
+            name: keyword.operator.list_type.teo
+          9:
+            name: keyword.operator.optional_type.teo
+          10:
+            name: invalid.illegal.required_type.teo
+  interfaceDeclaration:
+    name: meta.interface.teo
+    begin: (interface)\s+(\w+)
+    beginCaptures:
+      1:
+        name: storage.modifier.teo
+      2:
+        name: entity.name.type.interface.teo
+    end: (?<=\})
+    patterns:
+      - include: "#codeComment"
+      - include: "#docComment"
+      - include: "#interfaceHeritage"
+      -
+        match: ([A-Za-z_][A-Za-z0-9_]*)
+        captures:
+          1:
+            name: entity.name.type.interface.teo
+      - include: "#typeParameters"
+      - include: "#interfaceBody"
+  interfaceBody:
+    begin: \{
+    beginCaptures:
+      0:
+        name: punctuation.definition.block.teo
+    end: \}
+    endCaptures:
+      0:
+        name: punctuation.definition.block.teo
+    patterns:
+      - include: "#codeComment"
+      - include: "#docComment"
+      - include: "#fieldDefinition"
+  typeParameters:
+    name: meta.type.parameters.teo
+    begin: (<)
+    beginCaptures:
+      1:
+        name: punctuation.definition.typeparameters.begin.teo
+    end: (>)
+    endCaptures:
+      1:
+        name: punctuation.definition.typeparameters.end.teo
+    patterns:
+      - include: "#codeComment"
+      - include: "#docComment"
+      - include: "#comma"
+      - 
+        match: [A-Za-z_][A-Za-z0-9_]*
+        captures:
+          0:
+            name: entity.name.type.interface.teo
+  interfaceHeritage:
+    name: meta.interfaceHeritage.teo
+    begin: \s*(extends)\s*
+    beginCaptures:
+      1:
+        name: storage.modifier.teo
+    end: (?=\{)
+    patterns:
+      - include: "#codeComment"
+      - include: "#docComment"
+      -
+        match: [A-Za-z_][A-Za-z0-9_]*
+        captures:
+          0:
+            name: entity.other.inherited-class.teo
+      - include: "#interfaceHeritage"
+      - include: "#typeParameters"
+      - include: "#expressionPunctuations"
