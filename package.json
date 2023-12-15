@@ -2,7 +2,7 @@
   "name": "teo-vscode",
   "displayName": "Teo",
   "description": "Teo language support",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "publisher": "yeannylam",
   "repository": {
     "type": "git",
@@ -12,13 +12,14 @@
     "vscode": "^1.82.0"
   },
   "scripts": {
+    "prebuild": "ts-node buildSyntax.ts",
     "build": "tsc"
   },
   "main": "./dist/src/extension.js",
   "icon": "images/icon.png",
   "activationEvents": [
-		"onLanguage:teo"
-	],
+    "onLanguage:teo"
+  ],
   "categories": [
     "Programming Languages"
   ],
@@ -53,6 +54,8 @@
     "@types/node": "^20.8.0",
     "@types/vscode": "^1.82.0",
     "@vscode/vsce": "^2.21.1",
-    "typescript": "^5.2.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.2",
+    "yaml": "^2.3.4"
   }
 }

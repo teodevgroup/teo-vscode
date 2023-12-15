@@ -1,0 +1,23 @@
+$schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+name: Teo
+scopeName: source.teo
+fileTypes: 
+  - teo
+
+variables:
+  startOfIdentifier: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))
+  endOfIdentifier: (?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
+  propertyAccess: (?:(\.)|(\?\.(?!\s*[[:digit:]])))
+  propertyAccessPreIdentifier: \??\.\s*
+  identifier: '[_$[:alpha:]][_$[:alnum:]]*'
+  quotedStrings: (\'([^\'\\]|\\.)*\')|(\"([^\"\\]|\\.)*\")|(\`([^\`\\]|\\.)*\`)
+
+patterns:
+  - include: docComment
+  - include: codeComment
+
+repository:
+  docComment: 
+    begin: ///{{startOfIdentifier}}
+    end: $\n?
+    name: comment.teo.doc
