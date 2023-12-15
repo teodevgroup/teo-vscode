@@ -13,6 +13,9 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.21
+* More accurate syntax highlighting
+
 ### 0.0.20 (Nov 30th, 2023)
 
 * Support type syntax `(T | U)[]?`
@@ -59,11 +62,11 @@ Visual Studio Code.
 * Added code diagnostics for importing an unexisting file
 * Added code diagnostics for duplicated model definitions
 
-### 0.0.14 (Sep 24nd, 2023)
+### 0.0.14 (Sep 24th, 2023)
 
 * Highlight for comments in tuple and array literals
 
-### 0.0.13 (Sep 23nd, 2023)
+### 0.0.13 (Sep 23rd, 2023)
 
 * Highlight for namespaced types
 
