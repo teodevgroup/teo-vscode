@@ -286,7 +286,7 @@
       ]
     },
     "pipelineLiteral": {
-      "name": "source.teo.pipeline",
+      "name": "source.teo.pipelineLiteral",
       "patterns": [
         {
           "include": "#pipelineChainedFunctionCall"
@@ -300,7 +300,7 @@
       "name": "source.teo.pipelineChainedIdentifier",
       "patterns": [
         {
-          "match": "(\\$)?(\\w+)(\\.)?",
+          "match": "(\\$)([A-Za-z_][A-Za-z0-9_]*)(\\.)?",
           "captures": {
             "1": {
               "name": "entity.name.function.attribute.teo"
@@ -317,7 +317,7 @@
     },
     "pipelineChainedFunctionCall": {
       "name": "source.teo.pipelineChainedFunctionCall",
-      "begin": "(\\$)?(\\w+)(\\()?",
+      "begin": "(\\$)([A-Za-z_][A-Za-z0-9_]*)(\\()",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.attribute.teo"
@@ -331,10 +331,10 @@
       },
       "end": "(\\))(\\.)?",
       "endCaptures": {
-        "1": {
+        "2": {
           "name": "punctuation.definition.tag.teo"
         },
-        "2": {
+        "3": {
           "name": "punctuation.definition.tag.teo"
         }
       },
@@ -351,11 +351,8 @@
       ]
     },
     "expression": {
-      "name": "source.teo.value",
+      "name": "source.teo.expression",
       "patterns": [
-        {
-          "inlcude": "#pipelineLiteral"
-        },
         {
           "include": "#primitiveLiteral"
         },
@@ -370,6 +367,9 @@
         },
         {
           "include": "#enumVariantLiteral"
+        },
+        {
+          "include": "#pipelineLiteral"
         }
       ]
     },

@@ -164,7 +164,7 @@ repository:
       - include: "#docComment"
       - include: "#codeComment"
   pipelineLiteral:
-    name: source.teo.pipeline
+    name: source.teo.pipelineLiteral
     patterns:
       - include: "#pipelineChainedFunctionCall"
       - include: "#pipelineChainedIdentifier"
@@ -172,8 +172,7 @@ repository:
     name: source.teo.pipelineChainedIdentifier
     patterns:
       -
-        match: "(\\$)?(\\w+)(\\.)?"
-        #match: "([A-Za-z_][A-Za-z0-9_]*)(\\.)?"
+        match: "(\\$)([A-Za-z_][A-Za-z0-9_]*)(\\.)?"
         captures:
           1:
             name: entity.name.function.attribute.teo
@@ -183,8 +182,7 @@ repository:
             name: punctuation.definition.tag.teo
   pipelineChainedFunctionCall:
     name: source.teo.pipelineChainedFunctionCall
-    begin: "(\\$)?(\\w+)(\\()?"
-    #begin: "([A-Za-z_][A-Za-z0-9_]*)(\\()"
+    begin: "(\\$)([A-Za-z_][A-Za-z0-9_]*)(\\()"
     beginCaptures:
       1:
         name: entity.name.function.attribute.teo
@@ -194,23 +192,23 @@ repository:
         name: punctuation.definition.tag.teo
     end: (\))(\.)?
     endCaptures:
-      1:
+      2:
         name: punctuation.definition.tag.teo
-      2: 
+      3: 
         name: punctuation.definition.tag.teo
     patterns:
       - include: "#namedArgument"
       - include: "#expression"
       - include: "#comma"
   expression:
-    name: source.teo.value
-    patterns:
-      - inlcude: "#pipelineLiteral"
+    name: source.teo.expression
+    patterns:  
       - include: "#primitiveLiteral"
       - include: "#dictionaryLiteral"
       - include: "#arrayLiteral"
       - include: "#tupleLiteral"
       - include: "#enumVariantLiteral"
+      - include: "#pipelineLiteral"      
   # statements
   importStatement:
     name: storage.modifier.import.teo
