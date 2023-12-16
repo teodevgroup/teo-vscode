@@ -23,6 +23,13 @@ patterns:
   - include: "#middlewareDeclaration"
   - include: "#actionGroupDeclaration"
   - include: "#actionDeclaration"
+  - include: "#linedDecoratorDeclaration"
+  - include: "#blockedDecoratorDeclaration"
+  - include: "#pipelineDeclaration"
+  - include: "#keywords"
+  - include: "#expression"         
+  - include: "#decorator"
+  - include: "#decoratorWithArguments"
 
 repository:
   # comments
@@ -65,6 +72,10 @@ repository:
     patterns:
       - include: "#comma"
       - include: "#accessor"
+  # keywords
+  keywords:
+    name: storage.modifier.keyword.teo
+    match: (declare|model|enum|interface|middleware|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)
   # literals
   nullLiteral:
     name: constant.language.null.teo
@@ -230,7 +241,14 @@ repository:
       - include: "#configDeclaration"
       - include: "#middlewareDeclaration"
       - include: "#actionGroupDeclaration"
-      - include: "#actionDeclaration"      
+      - include: "#actionDeclaration"  
+      - include: "#linedDecoratorDeclaration"
+      - include: "#blockedDecoratorDeclaration"
+      - include: "#pipelineDeclaration"
+      - include: "#keywords"
+      - include: "#expression"   
+      - include: "#decorator"
+      - include: "#decoratorWithArguments"            
   constantStatement:
     name: variable.name.teo
     begin: (let)\s+([_\w]+)\s+(=)\s+
@@ -418,7 +436,7 @@ repository:
       - include: "#docComment"
       - include: "#comma"
       - 
-        match: [A-Za-z_][A-Za-z0-9_]*
+        match: "[A-Za-z_][A-Za-z0-9_]*"
         captures:
           0:
             name: entity.name.type.interface.teo
@@ -433,7 +451,7 @@ repository:
       - include: "#codeComment"
       - include: "#docComment"
       -
-        match: [A-Za-z_][A-Za-z0-9_]*
+        match: "[A-Za-z_][A-Za-z0-9_]*"
         captures:
           0:
             name: entity.other.inherited-class.teo
@@ -544,7 +562,7 @@ repository:
         name: entity.name.type.model.teo
   actionGroupDeclaration:
     name: meta.actionGroupDeclaration.teo
-    match: (declare)\s+(action)\s+(group)\s+([A-Za-z_][A-Za-z0-9_]*)
+    match: (declare)\s+(handler)\s+(group)\s+([A-Za-z_][A-Za-z0-9_]*)
     captures:
       1:
         name: storage.modifier.keyword.teo
@@ -556,7 +574,7 @@ repository:
         name: entity.name.type.model.teo
   actionDeclaration:
     name: meta.actionDeclaration.teo
-    begin: (declare)\s+(action)\s+([A-Za-z_][A-Za-z0-9_]*)
+    begin: (declare)\s+(handler)\s+([A-Za-z_][A-Za-z0-9_]*)
     beginCaptures:
       1:
         name: storage.modifier.keyword.teo
@@ -573,7 +591,7 @@ repository:
       - include: "#parenClose"
       - include: "#typeParameters"
       - 
-        match: [A-Za-z_][A-Za-z0-9_]*
+        match: "[A-Za-z_][A-Za-z0-9_]*"
         captures:
           0:
             name: entity.other.inherited-class.teo
@@ -641,7 +659,7 @@ repository:
             name: variable.parameter.key.teo
           2:
             name: punctuation.definition.separator.key-value.teo
-	typeExpressionNesting:
+  typeExpressionNesting:
     name: meta.type.expression.nesting.teo
     begin: (<)
     beginCaptures:
@@ -657,7 +675,7 @@ repository:
       - include: "#comma"
       - include: "#typeExpression"
       -
-        match: [A-Za-z_][A-Za-z0-9_]*
+        match: "[A-Za-z_][A-Za-z0-9_]*"
         captures:
           0:
             name: entity.name.type.interface.teo
@@ -674,3 +692,107 @@ repository:
     patterns:
       - include: "#argumentDeclaration"
       - include: "#typeExpression"
+  linedDecoratorDeclaration:
+    name: teo.source.linedDecoratorDeclaration
+    begin: "(declare)\\s*(unique|exclusive)?\\s*(model|interface|enum)?\\s*(field|member|property|relation)?\\s*(decorator)\\s+(\\w+)"
+    beginCaptures:
+      1:
+        name: storage.modifier.declare.teo
+      2:
+        name: storage.modifier.declare.teo
+      3:
+        name: storage.modifier.declare.teo
+      4:
+        name: storage.modifier.declare.teo
+      5:
+        name: storage.modifier.declare.teo
+      6:
+        name: entity.name.function.teo
+    end: "(?<=\\\n)"
+    patterns:
+      - include: "#typeParameters"
+      - include: "#argumentListDeclaration"
+  blockedDecoratorDeclaration:
+    name: teo.source.blockedDecoratorDeclaration
+    begin: "(declare)\\s*(unique|exclusive)?\\s*(model|interface|enum)?\\s*(field|member|property|relation)?\\s*(decorator)\\s+(\\w+)"
+    beginCaptures:
+      1:
+        name: storage.modifier.declare.teo
+      2:
+        name: storage.modifier.declare.teo
+      3:
+        name: storage.modifier.declare.teo
+      4:
+        name: storage.modifier.declare.teo
+      5:
+        name: storage.modifier.declare.teo
+      6:
+        name: entity.name.function.teo 
+    end: "(?<=\\\n)"
+    patterns: 
+      - include: "#decoratorVariantBlock"
+  pipelineDeclaration:
+    begin: "(declare)\\s+(pipeline)\\s+(item)\\s+(\\w+)"
+    beginCaptures:
+      1:
+        name: storage.modifier.declare.teo
+      2:
+        name: storage.modifier.declare.teo
+      3:
+        name: storage.modifier.declare.teo
+      4:
+        name: entity.name.function.teo
+    end: "(?<=\\\n)"
+    patterns:
+      - include: "#typeParameters"
+      - include: "#pipelineItemVariantBlock"
+  decoratorVariantBlock:
+    begin: "(\\{)"
+    beginCaptures:
+      1:
+        name: punctuation.definition.tag.teo
+    end: "(\\})"
+    endCaptures:
+      1:
+        name: punctuation.definition.tag.teo
+    patterns:
+      - include: "#docComment"
+      - include: "#codeComment"
+      - include: "#decoratorVariantDeclaration"
+  pipelineItemVariantBlock:
+    begin: "(\\{)"
+    beginCaptures:
+      1:
+        name: punctuation.definition.tag.teo
+    end: (\\})
+    endCaptures:
+      1:
+        name: punctuation.definition.tag.teo
+    patterns:
+      - include: "#docComment"
+      - include: "#codeComment"
+      - include: "#pipelineItemVariantDeclaration"
+  pipelineItemVariantDeclaration:
+    begin: (variant)
+    beginCaptures:
+      1:
+        name: storage.modifier.declare.teo
+    end: "\n"
+    patterns:
+      - include: "#typeParameters"
+      - include: "#argumentListDeclaration"
+      - include: "#colon"
+      - include: "#typeExpression"
+      - include: "#arrow"
+  decoratorVariantDeclaration:
+    begin: (variant)
+    beginCaptures:
+      1:
+        name: storage.modifier.declare.teo
+    end: "\n"
+    patterns:
+      - include: "#typeParameters"
+      - include: "#argumentListDeclaration"
+      - include: "#colon"
+      - include: "#typeExpression"
+      - include: "#arrow"

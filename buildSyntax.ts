@@ -105,4 +105,4 @@ delete yamlObject['variables']
 updateVariableReplacers(variables!)
 updateGrammarVariables(yamlObject, variables!)
 const jsonContent = JSON.stringify(yamlObject, null, 2)
-writeFileSync("syntaxes/teo.tmLanguage.new.json", jsonContent)
+writeFileSync("syntaxes/teo.tmLanguage.json", jsonContent)
