@@ -46,10 +46,10 @@
       "include": "#middlewareDeclaration"
     },
     {
-      "include": "#actionGroupDeclaration"
+      "include": "#handlerGroupDeclaration"
     },
     {
-      "include": "#actionDeclaration"
+      "include": "#handlerDeclaration"
     },
     {
       "include": "#linedDecoratorDeclaration"
@@ -67,10 +67,10 @@
       "include": "#expression"
     },
     {
-      "include": "#decorator"
+      "include": "#decoratorWithArguments"
     },
     {
-      "include": "#decoratorWithArguments"
+      "include": "#decorator"
     },
     {
       "include": "#availabilityFlags"
@@ -135,7 +135,7 @@
     },
     "keywords": {
       "name": "storage.modifier.keyword.teo",
-      "match": "(let|declare|model|enum|interface|middleware|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)"
+      "match": "(let|declare|model|enum|interface|middlewares?|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)"
     },
     "nullLiteral": {
       "name": "constant.language.null.teo",
@@ -314,7 +314,7 @@
     },
     "pipelineChainedFunctionCall": {
       "name": "source.teo.pipelineChainedFunctionCall",
-      "begin": "(\\$)?(\\w+)(\\()",
+      "begin": "(\\$)?(\\w+)(\\()?",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.attribute.teo"
@@ -351,6 +351,9 @@
       "name": "source.teo.value",
       "patterns": [
         {
+          "inlcude": "#pipelineLiteral"
+        },
+        {
           "include": "#primitiveLiteral"
         },
         {
@@ -361,9 +364,6 @@
         },
         {
           "include": "#tupleLiteral"
-        },
-        {
-          "inlcude": "#pipelineLiteral"
         },
         {
           "include": "#enumVariantLiteral"
@@ -444,10 +444,10 @@
           "include": "#middlewareDeclaration"
         },
         {
-          "include": "#actionGroupDeclaration"
+          "include": "#handlerGroupDeclaration"
         },
         {
-          "include": "#actionDeclaration"
+          "include": "#handlerDeclaration"
         },
         {
           "include": "#linedDecoratorDeclaration"
@@ -1033,10 +1033,10 @@
         }
       }
     },
-    "actionGroupDeclaration": {
+    "handlerGroupDeclaration": {
       "name": "meta.actionGroupDeclaration.teo",
-      "match": "(declare)\\s+(handler)\\s+(group)\\s+([A-Za-z_][A-Za-z0-9_]*)",
-      "captures": {
+      "begin": "(declare)\\s+(handler)\\s+(group)\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*({)",
+      "beginCaptures": {
         "1": {
           "name": "storage.modifier.keyword.teo"
         },
@@ -1048,10 +1048,30 @@
         },
         "4": {
           "name": "entity.name.type.model.teo"
+        },
+        "5": {
+          "name": "punctuation.definition.block.teo"
         }
-      }
+      },
+      "end": "(})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.block.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#decoratorWithArguments"
+        },
+        {
+          "include": "#decorator"
+        },
+        {
+          "include": "#handlerDeclaration"
+        }
+      ]
     },
-    "actionDeclaration": {
+    "handlerDeclaration": {
       "name": "meta.actionDeclaration.teo",
       "begin": "(declare)\\s+(handler)\\s+([A-Za-z_][A-Za-z0-9_]*)",
       "beginCaptures": {
@@ -1123,10 +1143,10 @@
       },
       "patterns": [
         {
-          "include": "#namedArgument"
+          "include": "#expression"
         },
         {
-          "include": "#expression"
+          "include": "#namedArgument"
         }
       ]
     },
@@ -1134,10 +1154,10 @@
       "name": "source.teo.namedArgument",
       "patterns": [
         {
-          "include": "#mapKey"
+          "include": "#expression"
         },
         {
-          "include": "#expression"
+          "include": "#mapKey"
         }
       ]
     },

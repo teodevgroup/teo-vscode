@@ -14,7 +14,11 @@ Visual Studio Code.
 ## Release Notes
 
 ### 0.0.21
-* More accurate syntax highlighting
+
+* Syntax highlighting for availability flags
+* Update handler declaration syntax
+* Add syntax highlighting for use `middlewares`
+* Fix syntax highlighting bugs
 
 ### 0.0.20 (Nov 30th, 2023)
 

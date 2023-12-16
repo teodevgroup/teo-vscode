@@ -22,15 +22,15 @@ patterns:
   - include: "#structDeclaration"  
   - include: "#configDeclaration"
   - include: "#middlewareDeclaration"
-  - include: "#actionGroupDeclaration"
-  - include: "#actionDeclaration"
+  - include: "#handlerGroupDeclaration"
+  - include: "#handlerDeclaration"
   - include: "#linedDecoratorDeclaration"
   - include: "#blockedDecoratorDeclaration"
   - include: "#pipelineDeclaration"
   - include: "#keywords"
   - include: "#expression"         
+  - include: "#decoratorWithArguments"  
   - include: "#decorator"
-  - include: "#decoratorWithArguments"
   - include: "#availabilityFlags"
 
 repository:
@@ -77,7 +77,7 @@ repository:
   # keywords
   keywords:
     name: storage.modifier.keyword.teo
-    match: (let|declare|model|enum|interface|middleware|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)
+    match: (let|declare|model|enum|interface|middlewares?|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)
   # literals
   nullLiteral:
     name: constant.language.null.teo
@@ -171,17 +171,19 @@ repository:
     name: source.teo.pipelineChainedIdentifier
     patterns:
       -
-        match: (\$)?(\w+)(\.)?
+        match: "(\\$)?(\\w+)(\\.)?"
+        #match: "([A-Za-z_][A-Za-z0-9_]*)(\\.)?"
         captures:
           1:
             name: entity.name.function.attribute.teo
           2:
-            name: entity.name.function.attribute.teo
+            name: entity.name.function.attribute.teo            
           3: 
             name: punctuation.definition.tag.teo
   pipelineChainedFunctionCall:
     name: source.teo.pipelineChainedFunctionCall
-    begin: (\$)?(\w+)(\()
+    begin: "(\\$)?(\\w+)(\\()?"
+    #begin: "([A-Za-z_][A-Za-z0-9_]*)(\\()"
     beginCaptures:
       1:
         name: entity.name.function.attribute.teo
@@ -202,11 +204,11 @@ repository:
   expression:
     name: source.teo.value
     patterns:
+      - inlcude: "#pipelineLiteral"
       - include: "#primitiveLiteral"
       - include: "#dictionaryLiteral"
       - include: "#arrayLiteral"
       - include: "#tupleLiteral"
-      - inlcude: "#pipelineLiteral"
       - include: "#enumVariantLiteral"
   # statements
   importStatement:
@@ -245,13 +247,13 @@ repository:
       - include: "#structDeclaration"
       - include: "#configDeclaration"
       - include: "#middlewareDeclaration"
-      - include: "#actionGroupDeclaration"
-      - include: "#actionDeclaration"  
+      - include: "#handlerGroupDeclaration"
+      - include: "#handlerDeclaration"  
       - include: "#linedDecoratorDeclaration"
       - include: "#blockedDecoratorDeclaration"
       - include: "#pipelineDeclaration"
       - include: "#keywords"
-      - include: "#expression"   
+      - include: "#expression"
       - include: "#decorator"
       - include: "#decoratorWithArguments"     
       - include: "#availabilityFlags"       
@@ -568,10 +570,10 @@ repository:
         name: storage.modifier.keyword.teo
       3:
         name: entity.name.type.model.teo
-  actionGroupDeclaration:
+  handlerGroupDeclaration:
     name: meta.actionGroupDeclaration.teo
-    match: (declare)\s+(handler)\s+(group)\s+([A-Za-z_][A-Za-z0-9_]*)
-    captures:
+    begin: (declare)\s+(handler)\s+(group)\s+([A-Za-z_][A-Za-z0-9_]*)\s*({)
+    beginCaptures:
       1:
         name: storage.modifier.keyword.teo
       2:
@@ -580,7 +582,17 @@ repository:
         name: storage.modifier.keyword.teo
       4:
         name: entity.name.type.model.teo
-  actionDeclaration:
+      5:
+        name: punctuation.definition.block.teo
+    end: (})
+    endCaptures:
+      1:
+        name: punctuation.definition.block.teo
+    patterns:
+      - include: "#decoratorWithArguments"
+      - include: "#decorator"    
+      - include: "#handlerDeclaration"
+  handlerDeclaration:
     name: meta.actionDeclaration.teo
     begin: (declare)\s+(handler)\s+([A-Za-z_][A-Za-z0-9_]*)
     beginCaptures:
@@ -591,7 +603,7 @@ repository:
       3: 
         name: entity.name.type.model.teo
     end: \n
-    patterns:
+    patterns:    
       - include: "#expressionPunctuations"
       - include: "#colon"
       - include: "#comma"
@@ -622,13 +634,13 @@ repository:
       1:
         name: punctuation.definition.tag.teo
     patterns:
-      - include: "#namedArgument"
       - include: "#expression"
+      - include: "#namedArgument"
   namedArgument:
     name: source.teo.namedArgument
     patterns:
-      - include: "#mapKey"
       - include: "#expression"
+      - include: "#mapKey"
   argumentDeclaration:
     name: source.teo.argumentDeclaration
     patterns: 
