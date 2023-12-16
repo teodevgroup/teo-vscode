@@ -261,16 +261,14 @@ repository:
       - include: "#availabilityFlags"       
   constantStatement:
     name: source.teo.constantStatement
-    begin: "(let)\\s+([a-ZA-Z0-9_]+)\\s*(=)"
-    beginCaptures:
+    match: "(let)\\s+(\\w+)\\s*(=)\\s*"
+    captures:
       1:
         name: storage.modifier.keyword.teo
       2:
         name: variable.other.constant.object.teo
       3: 
-        name: punctuation.definition.tag.teo
-    patterns:
-      include: "#expression"
+        name: keyword.operator.assignment.teo
   configStatement:
     name: source.teo.embedded.config
     begin: ^\s*{{configKeywords}}(\s+([_A-Za-z][_A-Za-z0-9]*))?\s+({)
@@ -868,7 +866,7 @@ repository:
       - include: "#typeParameters"
       - include: "#argumentListDeclaration"
       - include: "#colon"
-      - include: "#genericsConstraint"      
+      - include: "#genericsConstraint"
       - include: "#typeExpression"      
   availabilityFlags:
     name: entity.name.function.teo

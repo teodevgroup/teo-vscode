@@ -483,8 +483,8 @@
     },
     "constantStatement": {
       "name": "source.teo.constantStatement",
-      "begin": "(let)\\s+([a-ZA-Z0-9_]+)\\s*(=)",
-      "beginCaptures": {
+      "match": "(let)\\s+(\\w+)\\s*(=)\\s*",
+      "captures": {
         "1": {
           "name": "storage.modifier.keyword.teo"
         },
@@ -492,11 +492,8 @@
           "name": "variable.other.constant.object.teo"
         },
         "3": {
-          "name": "punctuation.definition.tag.teo"
+          "name": "keyword.operator.assignment.teo"
         }
-      },
-      "patterns": {
-        "include": "#expression"
       }
     },
     "configStatement": {
