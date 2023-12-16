@@ -58,7 +58,10 @@
       "include": "#blockedDecoratorDeclaration"
     },
     {
-      "include": "#pipelineDeclaration"
+      "include": "#blockedPipelineDeclaration"
+    },
+    {
+      "include": "#linedPipelineDeclaration"
     },
     {
       "include": "#keywords"
@@ -456,7 +459,10 @@
           "include": "#blockedDecoratorDeclaration"
         },
         {
-          "include": "#pipelineDeclaration"
+          "include": "#blockedPipelineDeclaration"
+        },
+        {
+          "include": "#linedPipelineDeclaration"
         },
         {
           "include": "#keywords"
@@ -776,7 +782,7 @@
           "include": "#availabilityFlags"
         },
         {
-          "include": "#fieldDefinition"
+          "include": "#fieldDeclaration"
         }
       ]
     },
@@ -785,13 +791,13 @@
       "begin": "(<)",
       "beginCaptures": {
         "1": {
-          "name": "punctuation.definition.typeparameters.begin.teo"
+          "name": "punctuation.definition.tag.begin.teo"
         }
       },
       "end": "(>)",
       "endCaptures": {
         "1": {
-          "name": "punctuation.definition.typeparameters.end.teo"
+          "name": "punctuation.definition.tag.end.teo"
         }
       },
       "patterns": [
@@ -902,11 +908,17 @@
               "name": "variable.other.assignment.teo"
             }
           }
+        },
+        {
+          "include": "#argumentListDeclaration"
+        },
+        {
+          "include": "#expression"
         }
       ]
     },
     "structDeclaration": {
-      "name": "entity.name.class.teo",
+      "name": "source.teo.structDeclaration",
       "begin": "(declare)\\s+(struct)\\s+(\\w+)\\s*",
       "beginCaptures": {
         "1": {
@@ -922,6 +934,9 @@
       "end": "(?<=\\})",
       "patterns": [
         {
+          "include": "#typeParameters"
+        },
+        {
           "include": "#docComment"
         },
         {
@@ -933,13 +948,13 @@
       ]
     },
     "structBody": {
-      "begin": "\\{",
+      "begin": "{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.block.teo"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.block.teo"
@@ -958,7 +973,7 @@
       ]
     },
     "functionDeclaration": {
-      "begin": "(declare)(\\s+(static))?\\s+(function)\\s+(\\w+) {",
+      "begin": "(declare)(\\s+(static))?\\s+(function)\\s+(\\w+)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.declare.teo"
@@ -990,6 +1005,7 @@
       ]
     },
     "configDeclaration": {
+      "name": "teo.source.configDeclaration",
       "begin": "(declare)\\s+(config)\\s+(\\w+)\\s*(\\{)",
       "beginCaptures": {
         "1": {
@@ -1008,7 +1024,7 @@
       "end": "\\}",
       "patterns": [
         {
-          "include": "#fieldDefinition"
+          "include": "#fieldDeclaration"
         },
         {
           "include": "#docComment"
@@ -1073,15 +1089,18 @@
     },
     "handlerDeclaration": {
       "name": "meta.actionDeclaration.teo",
-      "begin": "(declare)\\s+(handler)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+      "begin": "(declare)(\\s+(json|form))?\\s+(handler)\\s+([A-Za-z_][A-Za-z0-9_]*)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.keyword.teo"
         },
-        "2": {
+        "3": {
           "name": "storage.modifier.keyword.teo"
         },
-        "3": {
+        "4": {
+          "name": "storage.modifier.keyword.teo"
+        },
+        "5": {
           "name": "entity.name.type.model.teo"
         }
       },
@@ -1291,7 +1310,7 @@
     },
     "linedDecoratorDeclaration": {
       "name": "teo.source.linedDecoratorDeclaration",
-      "begin": "(declare)\\s*(unique|exclusive)?\\s*(model|interface|enum)?\\s*(field|member|property|relation)?\\s*(decorator)\\s+(\\w+)",
+      "begin": "(declare)\\s*(unique|exclusive)?\\s*(model|interface|enum|handler)?\\s*(field|member|property|relation)?\\s*(decorator)\\s+(\\w+)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.declare.teo"
@@ -1345,50 +1364,25 @@
           "name": "entity.name.function.teo"
         }
       },
-      "end": "(?<=\\\n)",
+      "end": "(?<=\\})",
       "patterns": [
         {
           "include": "#decoratorVariantBlock"
         }
       ]
     },
-    "pipelineDeclaration": {
-      "begin": "(declare)\\s+(pipeline)\\s+(item)\\s+(\\w+)",
-      "beginCaptures": {
-        "1": {
-          "name": "storage.modifier.declare.teo"
-        },
-        "2": {
-          "name": "storage.modifier.declare.teo"
-        },
-        "3": {
-          "name": "storage.modifier.declare.teo"
-        },
-        "4": {
-          "name": "entity.name.function.teo"
-        }
-      },
-      "end": "(?<=\\\n)",
-      "patterns": [
-        {
-          "include": "#typeParameters"
-        },
-        {
-          "include": "#pipelineItemVariantBlock"
-        }
-      ]
-    },
     "decoratorVariantBlock": {
-      "begin": "(\\{)",
+      "name": "source.teo.decoratorVariantBlock",
+      "begin": "{",
       "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.teo"
+        "0": {
+          "name": "punctuation.definition.block.teo"
         }
       },
-      "end": "(\\})",
+      "end": "}",
       "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.teo"
+        "0": {
+          "name": "punctuation.definition.block.teo"
         }
       },
       "patterns": [
@@ -1403,32 +1397,7 @@
         }
       ]
     },
-    "pipelineItemVariantBlock": {
-      "begin": "(\\{)",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.teo"
-        }
-      },
-      "end": "(\\\\})",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.teo"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#docComment"
-        },
-        {
-          "include": "#codeComment"
-        },
-        {
-          "include": "#pipelineItemVariantDeclaration"
-        }
-      ]
-    },
-    "pipelineItemVariantDeclaration": {
+    "decoratorVariantDeclaration": {
       "begin": "(variant)",
       "beginCaptures": {
         "1": {
@@ -1454,7 +1423,100 @@
         }
       ]
     },
-    "decoratorVariantDeclaration": {
+    "linedPipelineDeclaration": {
+      "name": "source.teo.linedPipelineDeclaration",
+      "begin": "(declare)\\s+(pipeline)\\s+(item)\\s+(\\w+)",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.declare.teo"
+        },
+        "2": {
+          "name": "storage.modifier.declare.teo"
+        },
+        "3": {
+          "name": "storage.modifier.declare.teo"
+        },
+        "4": {
+          "name": "entity.name.function.teo"
+        }
+      },
+      "end": "(?<=\\\n)",
+      "patterns": [
+        {
+          "include": "#typeParameters"
+        },
+        {
+          "include": "#argumentListDeclaration"
+        },
+        {
+          "include": "#colon"
+        },
+        {
+          "include": "#typeExpression"
+        },
+        {
+          "include": "#arrow"
+        }
+      ]
+    },
+    "blockedPipelineDeclaration": {
+      "name": "source.teo.blockedPipelineDeclaration",
+      "begin": "(declare)\\s+(pipeline)\\s+(item)\\s+(\\w+)\\s*(?={)",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.declare.teo"
+        },
+        "2": {
+          "name": "storage.modifier.declare.teo"
+        },
+        "3": {
+          "name": "storage.modifier.declare.teo"
+        },
+        "4": {
+          "name": "entity.name.function.teo"
+        }
+      },
+      "end": "(?<=\\})",
+      "patterns": [
+        {
+          "include": "#codeComment"
+        },
+        {
+          "include": "#docComment"
+        },
+        {
+          "include": "#pipelineItemVariantBlock"
+        }
+      ]
+    },
+    "pipelineItemVariantBlock": {
+      "name": "source.teo.pipelineItemVariantBlock",
+      "begin": "{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.teo"
+        }
+      },
+      "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#docComment"
+        },
+        {
+          "include": "#codeComment"
+        },
+        {
+          "include": "#pipelineItemVariantDeclaration"
+        }
+      ]
+    },
+    "pipelineItemVariantDeclaration": {
+      "name": "source.teo.pipelineItemVariantDeclaration",
       "begin": "(variant)",
       "beginCaptures": {
         "1": {

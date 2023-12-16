@@ -15,10 +15,11 @@ Visual Studio Code.
 
 ### 0.0.21
 
-* Syntax highlighting for availability flags
+* Syntax highlight for availability flags
 * Update handler declaration syntax
-* Add syntax highlighting for use `middlewares`
-* Fix syntax highlighting bugs
+* Syntax highlight for use `middlewares`
+* Syntax highlight for enum values and arguments
+* Fix syntax highlight bug for pipeline item
 
 ### 0.0.20 (Nov 30th, 2023)
 
