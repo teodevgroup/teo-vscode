@@ -16,6 +16,9 @@
       "include": "#importStatement"
     },
     {
+      "include": "#constantStatement"
+    },
+    {
       "include": "#namespaceStatement"
     },
     {
@@ -129,7 +132,7 @@
     },
     "keywords": {
       "name": "storage.modifier.keyword.teo",
-      "match": "(declare|model|enum|interface|middleware|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)"
+      "match": "(let|declare|model|enum|interface|middleware|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)"
     },
     "nullLiteral": {
       "name": "constant.language.null.teo",
@@ -141,7 +144,7 @@
     },
     "numberLiteral": {
       "name": "constant.numeric.teo",
-      "match": "((0(x|X)[0-9a-fA-F]*)|(\\+|-)?\\\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDdg]|UL|ul)?\\b"
+      "match": "((0(x|X)[0-9a-fA-F]*)|(\\+|-)?\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDdg]|UL|ul)?\\b"
     },
     "stringLiteral": {
       "name": "string.quoted.double.teo",
@@ -172,6 +175,9 @@
     "primitiveLiteral": {
       "name": "source.teo.literal",
       "patterns": [
+        {
+          "include": "#stringLiteral"
+        },
         {
           "include": "#nullLiteral"
         },
@@ -205,16 +211,16 @@
       },
       "patterns": [
         {
-          "include": "#docComment"
-        },
-        {
-          "include": "#codeComment"
-        },
-        {
           "include": "#expression"
         },
         {
           "include": "#colon"
+        },
+        {
+          "include": "#docComment"
+        },
+        {
+          "include": "#codeComment"
         }
       ]
     },
@@ -339,6 +345,9 @@
       "name": "source.teo.value",
       "patterns": [
         {
+          "include": "#primitiveLiteral"
+        },
+        {
           "include": "#dictionaryLiteral"
         },
         {
@@ -346,9 +355,6 @@
         },
         {
           "include": "#tupleLiteral"
-        },
-        {
-          "include": "#primitiveLiteral"
         },
         {
           "inlcude": "#pipelineLiteral"
@@ -400,6 +406,9 @@
         },
         {
           "include": "#codeComment"
+        },
+        {
+          "include": "#constantStatement"
         },
         {
           "include": "#namespaceStatement"
@@ -459,10 +468,10 @@
     },
     "constantStatement": {
       "name": "variable.name.teo",
-      "begin": "(let)\\s+([_\\w]+)\\s+(=)\\s+",
+      "begin": "(let)\\s+([a-ZA-Z0-9_]+)\\s*(=)",
       "beginCaptures": {
         "1": {
-          "name": "keyword.control.teo"
+          "name": "storage.modifier.keyword.teo"
         },
         "2": {
           "name": "variable.name.teo"
@@ -477,7 +486,7 @@
     },
     "configStatement": {
       "name": "source.teo.embedded.config",
-      "begin": "^\\s*(entity|client|connector|server|debug|test)(\\s+([_A-Za-z][\\\\w]*))\\s+({)",
+      "begin": "^\\s*(entity|client|connector|server|debug|test)(\\s+([_A-Za-z][_A-Za-z0-9]*))\\s+({)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.config.teo"

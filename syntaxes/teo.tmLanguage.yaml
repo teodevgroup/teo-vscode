@@ -12,6 +12,7 @@ patterns:
   - include: "#docComment"
   - include: "#codeComment"
   - include: "#importStatement"
+  - include: "#constantStatement"
   - include: "#namespaceStatement"
   - include: "#configStatement"
   - include: "#dataSetStatement"
@@ -75,7 +76,7 @@ repository:
   # keywords
   keywords:
     name: storage.modifier.keyword.teo
-    match: (declare|model|enum|interface|middleware|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)
+    match: (let|declare|model|enum|interface|middleware|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)
   # literals
   nullLiteral:
     name: constant.language.null.teo
@@ -85,7 +86,7 @@ repository:
     match: \b(true|false)\b
   numberLiteral:
     name: constant.numeric.teo
-    match: ((0(x|X)[0-9a-fA-F]*)|(\+|-)?\\b(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)([LlFfUuDdg]|UL|ul)?\b
+    match: ((0(x|X)[0-9a-fA-F]*)|(\+|-)?\b(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)([LlFfUuDdg]|UL|ul)?\b
   stringLiteral:
     name: string.quoted.double.teo  
     begin: >-
@@ -110,6 +111,7 @@ repository:
   primitiveLiteral:
     name: source.teo.literal
     patterns:
+      - include: "#stringLiteral"
       - include: "#nullLiteral"
       - include: "#boolLiteral"
       - include: "#numberLiteral"
@@ -126,10 +128,10 @@ repository:
       1:
         name: punctuation.definition.tag.teo
     patterns:
-      - include: "#docComment"
-      - include: "#codeComment"
       - include: "#expression"
       - include: "#colon"
+      - include: "#docComment"
+      - include: "#codeComment"      
   arrayLiteral:
     name: source.teo.array
     begin: \[
@@ -198,10 +200,10 @@ repository:
   expression:
     name: source.teo.value
     patterns:
+      - include: "#primitiveLiteral"
       - include: "#dictionaryLiteral"
       - include: "#arrayLiteral"
       - include: "#tupleLiteral"
-      - include: "#primitiveLiteral"
       - inlcude: "#pipelineLiteral"
       - include: "#enumVariantLiteral"
   # statements
@@ -231,6 +233,7 @@ repository:
     patterns:
       - include: "#docComment"
       - include: "#codeComment"
+      - include: "#constantStatement"
       - include: "#namespaceStatement"
       - include: "#configStatement"
       - include: "#dataSetStatement"
@@ -251,10 +254,10 @@ repository:
       - include: "#decoratorWithArguments"            
   constantStatement:
     name: variable.name.teo
-    begin: (let)\s+([_\w]+)\s+(=)\s+
+    begin: "(let)\\s+([a-ZA-Z0-9_]+)\\s*(=)"
     beginCaptures:
       1:
-        name: keyword.control.teo
+        name: storage.modifier.keyword.teo
       2:
         name: variable.name.teo
       3: 
@@ -263,7 +266,7 @@ repository:
       include: "#expression"
   configStatement:
     name: source.teo.embedded.config
-    begin: ^\s*{{configKeywords}}(\s+([_A-Za-z][\\w]*))\s+({)
+    begin: ^\s*{{configKeywords}}(\s+([_A-Za-z][_A-Za-z0-9]*))\s+({)
     beginCaptures:
       1: 
         name: storage.type.config.teo
