@@ -968,13 +968,13 @@
           "include": "#colon"
         },
         {
+          "include": "#genericsConstraint"
+        },
+        {
           "include": "#typeExpression"
         },
         {
           "include": "#argumentDeclaration"
-        },
-        {
-          "include": "#genericsConstraint"
         }
       ]
     },
@@ -1228,7 +1228,7 @@
     },
     "typeIdentifier": {
       "name": "source.teo.typeIdentifier",
-      "match": "(\\w+)",
+      "match": "([A-Za-z_][A-Za-z0-9_]*)",
       "captures": {
         "1": {
           "name": "entity.name.type.model.teo"
@@ -1438,13 +1438,14 @@
       ]
     },
     "decoratorVariantDeclaration": {
+      "name": "source.teo.decoratorVariantDeclaration",
       "begin": "(variant)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.declare.teo"
         }
       },
-      "end": "\n",
+      "end": "\n|(?=})",
       "patterns": [
         {
           "include": "#typeParameters"
@@ -1456,13 +1457,13 @@
           "include": "#colon"
         },
         {
+          "include": "#genericsConstraint"
+        },
+        {
           "include": "#typeExpression"
         },
         {
           "include": "#arrow"
-        },
-        {
-          "include": "#genericsConstraint"
         }
       ]
     },
@@ -1578,10 +1579,10 @@
           "include": "#colon"
         },
         {
-          "include": "#typeExpression"
+          "include": "#genericsConstraint"
         },
         {
-          "include": "#genericsConstraint"
+          "include": "#typeExpression"
         }
       ]
     },
@@ -1598,6 +1599,7 @@
           "name": "storage.modifier.declare.teo"
         }
       },
+      "end": "\n",
       "patterns": [
         {
           "include": "#colon"

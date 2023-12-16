@@ -527,9 +527,9 @@ repository:
     patterns:
       - include: "#argumentListDeclaration"
       - include: "#colon"
+      - include: "#genericsConstraint"
       - include: "#typeExpression"
       - include: "#argumentDeclaration"
-      - include: "#genericsConstraint"
   configDeclaration:
     name: teo.source.configDeclaration
     begin: (declare)\s+(config)\s+(\w+)\s*(\{)
@@ -674,7 +674,7 @@ repository:
       - include: "#tupleTypeExpression"
   typeIdentifier:
     name: source.teo.typeIdentifier
-    match: (\w+)
+    match: ([A-Za-z_][A-Za-z0-9_]*)
     captures: 
       1:
         name: entity.name.type.model.teo
@@ -794,18 +794,19 @@ repository:
       - include: "#codeComment"
       - include: "#decoratorVariantDeclaration"      
   decoratorVariantDeclaration:
+    name: source.teo.decoratorVariantDeclaration
     begin: (variant)
     beginCaptures:
       1:
         name: storage.modifier.declare.teo
-    end: "\n"
+    end: "\n|(?=})"
     patterns:
       - include: "#typeParameters"
       - include: "#argumentListDeclaration"
       - include: "#colon"
+      - include: "#genericsConstraint"
       - include: "#typeExpression"
       - include: "#arrow"
-      - include: "#genericsConstraint"
   linedPipelineDeclaration:
     name: source.teo.linedPipelineDeclaration
     begin: "(declare)\\s+(pipeline)\\s+(item)\\s+(\\w+)"
@@ -867,8 +868,8 @@ repository:
       - include: "#typeParameters"
       - include: "#argumentListDeclaration"
       - include: "#colon"
-      - include: "#typeExpression"
       - include: "#genericsConstraint"      
+      - include: "#typeExpression"      
   availabilityFlags:
     name: entity.name.function.teo
     begin: "#"
@@ -879,6 +880,7 @@ repository:
     beginCaptures:
       1:
         name: storage.modifier.declare.teo
+    end: "\n"        
     patterns:
       - include: "#colon"
       - include: "#typeExpression"
