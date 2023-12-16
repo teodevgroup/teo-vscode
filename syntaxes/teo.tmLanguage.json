@@ -52,10 +52,10 @@
       "include": "#handlerDeclaration"
     },
     {
-      "include": "#linedDecoratorDeclaration"
+      "include": "#blockedDecoratorDeclaration"
     },
     {
-      "include": "#blockedDecoratorDeclaration"
+      "include": "#linedDecoratorDeclaration"
     },
     {
       "include": "#blockedPipelineDeclaration"
@@ -453,10 +453,10 @@
           "include": "#handlerDeclaration"
         },
         {
-          "include": "#linedDecoratorDeclaration"
+          "include": "#blockedDecoratorDeclaration"
         },
         {
-          "include": "#blockedDecoratorDeclaration"
+          "include": "#linedDecoratorDeclaration"
         },
         {
           "include": "#blockedPipelineDeclaration"
@@ -1343,7 +1343,7 @@
     },
     "blockedDecoratorDeclaration": {
       "name": "teo.source.blockedDecoratorDeclaration",
-      "begin": "(declare)\\s*(unique|exclusive)?\\s*(model|interface|enum)?\\s*(field|member|property|relation)?\\s*(decorator)\\s+(\\w+)",
+      "begin": "(declare)\\s*(unique|exclusive)?\\s*(model|interface|enum)?\\s*(field|member|property|relation)?\\s*(decorator)\\s+(\\w+)\\s*(?={)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.declare.teo"
