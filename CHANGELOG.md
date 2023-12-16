@@ -1,5 +1,14 @@
 ## CHANGELOG
 
+### 0.0.21 (Dec 17th, 2023)
+
+* Syntax highlight for availability flags
+* Update handler declaration syntax
+* Syntax highlight for use `middlewares`
+* Syntax highlight for enum values and arguments
+* Fix syntax highlight bug for pipeline item declaration
+* Syntax highlight for generic constraint
+
 ### 0.0.20 (Nov 30th, 2023)
 
 * Support type syntax `(T | U)[]?`
