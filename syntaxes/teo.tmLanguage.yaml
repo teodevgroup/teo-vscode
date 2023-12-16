@@ -31,6 +31,7 @@ patterns:
   - include: "#expression"         
   - include: "#decorator"
   - include: "#decoratorWithArguments"
+  - include: "#availabilityFlags"
 
 repository:
   # comments
@@ -131,7 +132,8 @@ repository:
       - include: "#expression"
       - include: "#colon"
       - include: "#docComment"
-      - include: "#codeComment"      
+      - include: "#codeComment"   
+      - include: "#availabilityFlags"   
   arrayLiteral:
     name: source.teo.array
     begin: \[
@@ -251,7 +253,8 @@ repository:
       - include: "#keywords"
       - include: "#expression"   
       - include: "#decorator"
-      - include: "#decoratorWithArguments"            
+      - include: "#decoratorWithArguments"     
+      - include: "#availabilityFlags"       
   constantStatement:
     name: variable.name.teo
     begin: "(let)\\s+([a-ZA-Z0-9_]+)\\s*(=)"
@@ -285,7 +288,7 @@ repository:
       - include: "#colon"
   dataSetStatement:
     name: source.teo.embedded.dataSet
-    begin: ^\s*(autoseed dataset|autoseed|dataset)\s+([A-Za-z][\\w]*)\s+({)
+    begin: ^\s*(autoseed dataset|autoseed|dataset)\s+([A-Za-z][\w]*)\s+({)
     beginCaptures:
       1:
         name: storage.type.config.teo
@@ -363,6 +366,7 @@ repository:
     patterns:
       - include: "#docComment"
       - include: "#codeComment"
+      - include: "#availabilityFlags"
       - include: "#fieldDeclaration"
       - include: "#handlerDeclaration"
   fieldDeclaration:
@@ -371,7 +375,7 @@ repository:
       - include: "#decoratorWithArguments"
       - include: "#decorator"
       -
-        match: ^\s*(\w+)(\s*:)\s*((?!(?:{{builtinTypes}})\\b)\\b[\\w]+)?*({{builtinTypes}})?((\\.)(\\w+))*(\\[\\])?(\\?)?(\\!)?
+        match: ^\s*(\w+)(\s*:)\s*((?!(?:{{builtinTypes}})\b)\b[\w]+)?*({{builtinTypes}})?((\.)(\w+))*(\[\])?(\?)?(\!)?
         captures:
           1:
             name: variable.other.assignment.teo
@@ -423,6 +427,7 @@ repository:
     patterns:
       - include: "#codeComment"
       - include: "#docComment"
+      - include: "#availabilityFlags"
       - include: "#fieldDefinition"
   typeParameters:
     name: meta.type.parameters.teo
@@ -550,9 +555,9 @@ repository:
         name: punctuation.definition.block.teo
     end: \}
     patterns:
+      - include: "#fieldDefinition"    
       - include: "#docComment"
       - include: "#codeComment"
-      - include: "#fieldDefinition"
   middlewareDeclaration:
     name: meta.middlewareDeclaration.teo
     match: (declare)\s+(middleware)\s+([A-Za-z_][A-Za-z0-9_]*)
@@ -799,3 +804,7 @@ repository:
       - include: "#colon"
       - include: "#typeExpression"
       - include: "#arrow"
+  availabilityFlags:
+    name: entity.name.function.teo
+    begin: "#"
+    end: "\n"

@@ -71,6 +71,9 @@
     },
     {
       "include": "#decoratorWithArguments"
+    },
+    {
+      "include": "#availabilityFlags"
     }
   ],
   "repository": {
@@ -221,6 +224,9 @@
         },
         {
           "include": "#codeComment"
+        },
+        {
+          "include": "#availabilityFlags"
         }
       ]
     },
@@ -463,6 +469,9 @@
         },
         {
           "include": "#decoratorWithArguments"
+        },
+        {
+          "include": "#availabilityFlags"
         }
       ]
     },
@@ -521,7 +530,7 @@
     },
     "dataSetStatement": {
       "name": "source.teo.embedded.dataSet",
-      "begin": "^\\s*(autoseed dataset|autoseed|dataset)\\s+([A-Za-z][\\\\w]*)\\s+({)",
+      "begin": "^\\s*(autoseed dataset|autoseed|dataset)\\s+([A-Za-z][\\w]*)\\s+({)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.config.teo"
@@ -652,6 +661,9 @@
           "include": "#codeComment"
         },
         {
+          "include": "#availabilityFlags"
+        },
+        {
           "include": "#fieldDeclaration"
         },
         {
@@ -669,7 +681,7 @@
           "include": "#decorator"
         },
         {
-          "match": "^\\s*(\\w+)(\\s*:)\\s*((?!(?:Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId)\\\\b)\\\\b[\\\\w]+)?*(Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId)?((\\\\.)(\\\\w+))*(\\\\[\\\\])?(\\\\?)?(\\\\!)?",
+          "match": "^\\s*(\\w+)(\\s*:)\\s*((?!(?:Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId)\\b)\\b[\\w]+)?*(Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId)?((\\.)(\\w+))*(\\[\\])?(\\?)?(\\!)?",
           "captures": {
             "1": {
               "name": "variable.other.assignment.teo"
@@ -759,6 +771,9 @@
         },
         {
           "include": "#docComment"
+        },
+        {
+          "include": "#availabilityFlags"
         },
         {
           "include": "#fieldDefinition"
@@ -993,13 +1008,13 @@
       "end": "\\}",
       "patterns": [
         {
+          "include": "#fieldDefinition"
+        },
+        {
           "include": "#docComment"
         },
         {
           "include": "#codeComment"
-        },
-        {
-          "include": "#fieldDefinition"
         }
       ]
     },
@@ -1444,6 +1459,11 @@
           "include": "#arrow"
         }
       ]
+    },
+    "availabilityFlags": {
+      "name": "entity.name.function.teo",
+      "begin": "#",
+      "end": "\n"
     }
   }
 }
