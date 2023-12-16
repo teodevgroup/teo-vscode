@@ -260,20 +260,20 @@ repository:
       - include: "#decoratorWithArguments"     
       - include: "#availabilityFlags"       
   constantStatement:
-    name: variable.name.teo
+    name: source.teo.constantStatement
     begin: "(let)\\s+([a-ZA-Z0-9_]+)\\s*(=)"
     beginCaptures:
       1:
         name: storage.modifier.keyword.teo
       2:
-        name: variable.name.teo
+        name: variable.other.constant.object.teo
       3: 
         name: punctuation.definition.tag.teo
     patterns:
       include: "#expression"
   configStatement:
     name: source.teo.embedded.config
-    begin: ^\s*{{configKeywords}}(\s+([_A-Za-z][_A-Za-z0-9]*))\s+({)
+    begin: ^\s*{{configKeywords}}(\s+([_A-Za-z][_A-Za-z0-9]*))?\s+({)
     beginCaptures:
       1: 
         name: storage.type.config.teo
