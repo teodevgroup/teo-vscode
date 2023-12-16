@@ -168,6 +168,8 @@ repository:
     patterns:
       - include: "#pipelineChainedFunctionCall"
       - include: "#pipelineChainedIdentifier"
+      - include: "#functionCall"
+      - include: "#functionIdentifier"
   pipelineChainedIdentifier:
     name: source.teo.pipelineChainedIdentifier
     patterns:
@@ -192,14 +194,40 @@ repository:
         name: punctuation.definition.tag.teo
     end: (\))(\.)?
     endCaptures:
-      2:
+      1:
         name: punctuation.definition.tag.teo
-      3: 
+      2: 
         name: punctuation.definition.tag.teo
     patterns:
       - include: "#namedArgument"
       - include: "#expression"
       - include: "#comma"
+  functionIdentifier:
+    name: source.teo.functionIdentifier
+    match: "([A-Za-z_][A-Za-z0-9_]*)(\\.)?"
+    captures:
+      1:
+        name: entity.name.function.attribute.teo            
+      2: 
+        name: punctuation.definition.tag.teo
+  functionCall:
+    name: source.teo.functionCall
+    begin: "([A-Za-z_][A-Za-z0-9_]*)(\\()"
+    beginCaptures:
+      1:
+        name: entity.name.function.attribute.teo
+      2:
+        name: punctuation.definition.tag.teo
+    end: (\))(\.)?
+    endCaptures:
+      1:
+        name: punctuation.definition.tag.teo
+      2: 
+        name: punctuation.definition.tag.teo
+    patterns:
+      - include: "#namedArgument"
+      - include: "#expression"
+      - include: "#comma"      
   expression:
     name: source.teo.expression
     patterns:  
