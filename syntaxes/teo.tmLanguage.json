@@ -601,17 +601,17 @@
           "name": "punctuation.definition.tag.teo"
         }
       },
-      "patterns": {
-        "1": {
-          "name": "docComment"
+      "patterns": [
+        {
+          "include": "#docComment"
         },
-        "2": {
-          "name": "codeComment"
+        {
+          "include": "#codeComment"
         },
-        "3": {
-          "name": "dataSetGroupStatement"
+        {
+          "include": "#dataSetGroupStatement"
         }
-      }
+      ]
     },
     "dataSetGroupStatement": {
       "name": "source.teo.embedded.dataSetGroup",

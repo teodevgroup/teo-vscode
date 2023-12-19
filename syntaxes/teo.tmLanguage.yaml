@@ -329,12 +329,9 @@ repository:
       1:
         name: punctuation.definition.tag.teo
     patterns:
-      1:
-        name: docComment
-      2:
-        name: codeComment
-      3:
-        name: dataSetGroupStatement
+      - include: "#docComment"
+      - include: "#codeComment"
+      - include: "#dataSetGroupStatement"
   dataSetGroupStatement:
     name: source.teo.embedded.dataSetGroup
     begin: ^\s*(group)\s+([A-Za-z][\w]*)((\.)([A-Za-z][\w]*))*+\s+({)

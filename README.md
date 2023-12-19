@@ -13,6 +13,13 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.22 (Dec 20th, 2023)
+
+* Allow doc comment in dictionary literals
+* Fix import keyword is not recognized bug
+* Improve performance on auto completion
+* Fixed data set syntax highlight bug
+
 ### 0.0.21 (Dec 17th, 2023)
 
 * Syntax highlight for availability flags
