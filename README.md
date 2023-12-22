@@ -13,6 +13,15 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.0.23 (Dec 22nd, 2023)
+
+* Handlers in top level and namespace level
+* Optional handler input types
+* Add keyword `nonapi` to handler declarations
+* Highlight `Any` as builtin type
+* Update handler decorators
+* Fix output type of pipeline item `$when`
+
 ### 0.0.22 (Dec 20th, 2023)
 
 * Allow doc comment in dictionary literals

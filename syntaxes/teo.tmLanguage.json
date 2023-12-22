@@ -1110,7 +1110,7 @@
     },
     "handlerDeclaration": {
       "name": "meta.actionDeclaration.teo",
-      "begin": "(declare)(\\s+(json|form))?\\s+(handler)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+      "begin": "(declare)(\\s+(nonapi))?(\\s+(json|form))?\\s+(handler)\\s+([A-Za-z_][A-Za-z0-9_]*)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.keyword.teo"
@@ -1118,10 +1118,13 @@
         "3": {
           "name": "storage.modifier.keyword.teo"
         },
-        "4": {
+        "5": {
           "name": "storage.modifier.keyword.teo"
         },
-        "5": {
+        "6": {
+          "name": "storage.modifier.keyword.teo"
+        },
+        "7": {
           "name": "entity.name.type.model.teo"
         }
       },
@@ -1231,7 +1234,7 @@
       "name": "source.teo.typeExpression",
       "patterns": [
         {
-          "match": "^\\s*(\\w+)(\\s*:)\\s*((?!(?:Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId)\\b)\\b[\\w]+)?*(Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId)?((\\.)(\\w+))*(\\[\\])?(\\?)?(\\!)?",
+          "match": "^\\s*(\\w+)(\\s*:)\\s*((?!(?:Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId|Any)\\b)\\b[\\w]+)?*(Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId|Any)?((\\.)(\\w+))*(\\[\\])?(\\?)?(\\!)?",
           "captures": {
             "1": {
               "name": "variable.other.assignment.teo"

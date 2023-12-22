@@ -6,7 +6,7 @@ fileTypes:
 
 variables:
   configKeywords: (entity|client|connector|server|debug|test)
-  builtinTypes: Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId
+  builtinTypes: Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId|Any
 
 patterns:
   - include: "#docComment"
@@ -602,15 +602,17 @@ repository:
       - include: "#handlerDeclaration"
   handlerDeclaration:
     name: meta.actionDeclaration.teo
-    begin: (declare)(\s+(json|form))?\s+(handler)\s+([A-Za-z_][A-Za-z0-9_]*)
+    begin: (declare)(\s+(nonapi))?(\s+(json|form))?\s+(handler)\s+([A-Za-z_][A-Za-z0-9_]*)
     beginCaptures:
       1:
         name: storage.modifier.keyword.teo
       3:
         name: storage.modifier.keyword.teo
-      4:
+      5:
         name: storage.modifier.keyword.teo
-      5: 
+      6:
+        name: storage.modifier.keyword.teo
+      7: 
         name: entity.name.type.model.teo
     end: \n
     patterns:    
