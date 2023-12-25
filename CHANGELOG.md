@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+### 0.0.24 (Dec 26th, 2023)
+
+* Add relation update and delete rules
+* Fix crashing when auto completing relation code
+
 ### 0.0.23 (Dec 22nd, 2023)
 
 * Handlers in top level and namespace level

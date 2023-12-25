@@ -13,7 +13,7 @@ Visual Studio Code.
 
 ## Release Notes
 
-### 0.0.24
+### 0.0.24 (Dec 26th, 2023)
 
 * Add relation update and delete rules
 * Fix crashing when auto completing relation code
