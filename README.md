@@ -13,6 +13,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.1.0 (Jan 17th, 2024)
+
+* Support Node.js
+
 ### 0.0.24 (Dec 26th, 2023)
 
 * Add relation update and delete rules
