@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+### 0.2.0 (Feb 2nd, 2024)
+
+* Support Python
+* Fix relation filter is required bug
+
 ### 0.1.0 (Jan 17th, 2024)
 
 * Support Node.js
