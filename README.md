@@ -13,6 +13,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.1 (Feb 15th, 2024)
+
+* Fix data set group error message
+
 ### 0.2.0 (Feb 2nd, 2024)
 
 * Support Python
