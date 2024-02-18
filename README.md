@@ -13,6 +13,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.2 (Feb 18th, 2024)
+
+* Correct pipeline trigger arguments
+
 ### 0.2.1 (Feb 15th, 2024)
 
 * Fix data set group error message

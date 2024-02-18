@@ -2,7 +2,7 @@
   "name": "teo-vscode",
   "displayName": "Teo",
   "description": "Teo language support",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "publisher": "yeannylam",
   "repository": {
     "type": "git",
@@ -47,7 +47,7 @@
     ]
   },
   "dependencies": {
-    "@teocloud/teo-language-server": "0.2.1",
+    "@teocloud/teo-language-server": "0.2.2",
     "vscode-languageclient": "^9.0.1"
   },
   "devDependencies": {
