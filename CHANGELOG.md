@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### 0.2.3 (Feb 26th, 2024)
+
+* Support dynamic client host
+
 ### 0.2.2 (Feb 18th, 2024)
 
 * Correct pipeline trigger arguments
