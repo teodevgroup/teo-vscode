@@ -13,6 +13,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.4 (Mar 3rd, 2024)
+
+* Support TypeScript client custom HTTP providers
+
 ### 0.2.3 (Feb 26th, 2024)
 
 * Support dynamic client host
