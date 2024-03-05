@@ -13,6 +13,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.7 (Mar 5th, 2024)
+
+* Add input omissible to properties
+
 ### 0.2.6 (Mar 5th, 2024)
 
 * Fix environment variable is invalid expression bug
