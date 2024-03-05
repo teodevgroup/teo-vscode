@@ -1,5 +1,12 @@
 ## CHANGELOG
 
+### 0.2.6 (Mar 5th, 2024)
+
+* Fix environment variable is invalid expression bug
+* Fix subscription alters current namespace path bug
+* Update math items declarations and fix type checking bug
+* Fix assign pipeline item declaration bug
+
 ### 0.2.5 (Mar 5th, 2024)
 
 * Fix environment variable is invalid expression bug
