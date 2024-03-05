@@ -1,5 +1,11 @@
 ## CHANGELOG
 
+### 0.2.5 (Mar 5th, 2024)
+
+* Fix environment variable is invalid expression bug
+* Fix subscription alters current namespace path bug
+* Improve schema cache stability
+
 ### 0.2.4 (Mar 3rd, 2024)
 
 * Support TypeScript client custom HTTP providers
