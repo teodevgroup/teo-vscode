@@ -13,6 +13,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.8 (Mar 9th, 2024)
+
+* Fixed string filter case mode
+
 ### 0.2.7 (Mar 5th, 2024)
 
 * Add input omissible to properties
