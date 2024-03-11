@@ -13,6 +13,12 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.9
+
+* Syntax highlight for handler template
+* Syntax highlight for handler template inclusion
+* Syntax highlight for declared synthesized shapes
+
 ### 0.2.8 (Mar 9th, 2024)
 
 * Fixed string filter case mode

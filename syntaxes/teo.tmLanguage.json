@@ -37,6 +37,9 @@
       "include": "#interfaceDeclaration"
     },
     {
+      "include": "#synthesizedShapeDeclaration"
+    },
+    {
       "include": "#structDeclaration"
     },
     {
@@ -488,6 +491,9 @@
           "include": "#interfaceDeclaration"
         },
         {
+          "include": "#synthesizedShapeDeclaration"
+        },
+        {
           "include": "#structDeclaration"
         },
         {
@@ -717,10 +723,13 @@
           "include": "#availabilityFlags"
         },
         {
-          "include": "#fieldDeclaration"
+          "include": "#handlerDeclaration"
         },
         {
-          "include": "#handlerDeclaration"
+          "include": "#includeHandlerTemplate"
+        },
+        {
+          "include": "#fieldDeclaration"
         }
       ]
     },
@@ -737,6 +746,94 @@
           "include": "#typeExpression"
         }
       ]
+    },
+    "synthesizedShapeDeclaration": {
+      "name": "meta.synthesizedShape.teo",
+      "begin": "(declare)\\s+(synthesized)\\s+(shape)\\s+(\\w+)",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.teo"
+        },
+        "2": {
+          "name": "storage.modifier.teo"
+        },
+        "3": {
+          "name": "storage.modifier.teo"
+        },
+        "4": {
+          "name": "entity.name.type.synthesizedShape.teo"
+        }
+      },
+      "end": "(?<=\\})",
+      "patterns": [
+        {
+          "include": "#codeComment"
+        },
+        {
+          "include": "#docComment"
+        },
+        {
+          "include": "#synthesizedShapeDeclarationBody"
+        }
+      ]
+    },
+    "synthesizedShapeDeclarationBody": {
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.teo"
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#codeComment"
+        },
+        {
+          "include": "#docComment"
+        },
+        {
+          "include": "#availabilityFlags"
+        },
+        {
+          "include": "#synthesizedShapeDeclarationDynamicField"
+        },
+        {
+          "include": "#fieldDeclaration"
+        }
+      ]
+    },
+    "synthesizedShapeDeclarationDynamicField": {
+      "name": "source.teo.embedded.dynamic.field",
+      "begin": "(declare)\\s+(required|optional)?\\s+(synthesized)\\s+(field)\\s+(with)",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.teo"
+        },
+        "2": {
+          "name": "storage.modifier.teo"
+        },
+        "3": {
+          "name": "storage.modifier.teo"
+        },
+        "4": {
+          "name": "storage.modifier.teo"
+        },
+        "5": {
+          "name": "storage.modifier.teo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#decorator"
+        }
+      ],
+      "end": "\\n"
     },
     "interfaceDeclaration": {
       "name": "meta.interface.teo",
@@ -1108,9 +1205,31 @@
         }
       ]
     },
+    "includeHandlerTemplate": {
+      "name": "meta.includeHandlerTemplate.teo",
+      "begin": "(include)\\s+(handler)\\s+([\\w_\\.]+)(\\s+(as)\\s+(\\w+))?",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.keyword.teo"
+        },
+        "2": {
+          "name": "storage.modifier.keyword.teo"
+        },
+        "3": {
+          "name": "entity.name.type.model.teo"
+        },
+        "5": {
+          "name": "storage.modifier.keyword.teo"
+        },
+        "6": {
+          "name": "entity.name.type.model.teo"
+        }
+      },
+      "end": "\\n"
+    },
     "handlerDeclaration": {
-      "name": "meta.actionDeclaration.teo",
-      "begin": "(declare)(\\s+(nonapi))?(\\s+(json|form))?\\s+(handler)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+      "name": "meta.handlerDeclaration.teo",
+      "begin": "(declare)(\\s+(nonapi))?(\\s+(json|form))?\\s+(handler)\\s+((template)\\s+)?([A-Za-z_][A-Za-z0-9_]*)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.keyword.teo"
@@ -1124,7 +1243,10 @@
         "6": {
           "name": "storage.modifier.keyword.teo"
         },
-        "7": {
+        "8": {
+          "name": "storage.modifier.keyword.teo"
+        },
+        "9": {
           "name": "entity.name.type.model.teo"
         }
       },
