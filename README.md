@@ -15,9 +15,10 @@ Visual Studio Code.
 
 ### 0.2.9
 
-* Syntax highlight for handler template
-* Syntax highlight for handler template inclusion
-* Syntax highlight for declared synthesized shapes
+* Handler template
+* Handler template inclusion
+* Declared synthesized shapes
+* Fix jump to definition for namespace level route handlers
 
 ### 0.2.8 (Mar 9th, 2024)
 

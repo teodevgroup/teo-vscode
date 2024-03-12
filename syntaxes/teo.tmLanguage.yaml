@@ -405,15 +405,17 @@ repository:
       - include: "#typeExpression"
   synthesizedShapeDeclaration:
     name: meta.synthesizedShape.teo
-    begin: (declare)\s+(synthesized)\s+(shape)\s+(\w+)
+    begin: (declare)\s+((builtin)\s)?(synthesized)\s+(shape)\s+(\w+)
     beginCaptures:
       1:
-        name: storage.modifier.teo
-      2:
         name: storage.modifier.teo
       3:
         name: storage.modifier.teo
       4:
+        name: storage.modifier.teo
+      5:
+        name: storage.modifier.teo
+      6:
         name: entity.name.type.synthesizedShape.teo
     end: (?<=\})
     patterns:
