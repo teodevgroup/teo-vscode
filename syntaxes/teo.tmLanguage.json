@@ -37,6 +37,9 @@
       "include": "#interfaceDeclaration"
     },
     {
+      "include": "#singleLineSynthesizedShapeDeclaration"
+    },
+    {
       "include": "#synthesizedShapeDeclaration"
     },
     {
@@ -491,6 +494,9 @@
           "include": "#interfaceDeclaration"
         },
         {
+          "include": "#singleLineSynthesizedShapeDeclaration"
+        },
+        {
           "include": "#synthesizedShapeDeclaration"
         },
         {
@@ -747,11 +753,14 @@
         }
       ]
     },
-    "synthesizedShapeDeclaration": {
+    "singleLineSynthesizedShapeDeclaration": {
       "name": "meta.synthesizedShape.teo",
-      "begin": "(declare)\\s+((builtin)\\s)?(synthesized)\\s+(shape)\\s+(\\w+)",
-      "beginCaptures": {
+      "match": "(declare)\\s+(builtin)\\s+(synthesized)\\s+(shape)\\s+(\\w+)",
+      "captures": {
         "1": {
+          "name": "storage.modifier.teo"
+        },
+        "2": {
           "name": "storage.modifier.teo"
         },
         "3": {
@@ -761,9 +770,24 @@
           "name": "storage.modifier.teo"
         },
         "5": {
+          "name": "entity.name.type.synthesizedShape.teo"
+        }
+      }
+    },
+    "synthesizedShapeDeclaration": {
+      "name": "meta.synthesizedShape.teo",
+      "begin": "(declare)\\s+(synthesized)\\s+(shape)\\s+(\\w+)",
+      "beginCaptures": {
+        "1": {
           "name": "storage.modifier.teo"
         },
-        "6": {
+        "2": {
+          "name": "storage.modifier.teo"
+        },
+        "3": {
+          "name": "storage.modifier.teo"
+        },
+        "4": {
           "name": "entity.name.type.synthesizedShape.teo"
         }
       },
