@@ -13,6 +13,12 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.10 (Mar 15th, 2024)
+
+* Add interface decorators
+* Update sign in shape declaration
+* Fixed field of declared shape is not optional bug
+
 ### 0.2.9 (Mar 15th, 2024)
 
 * Handler template
