@@ -1,5 +1,13 @@
 ## CHANGELOG
 
+### 0.2.9 (Mar 15th, 2024)
+
+* Handler template
+* Handler template inclusion
+* Declared synthesized shapes
+* Fix jump to definition for namespace level route handlers
+* Add pipeline item `$do` and `$not`
+
 ### 0.2.8 (Mar 9th, 2024)
 
 * Fixed string filter case mode
