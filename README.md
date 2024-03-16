@@ -13,6 +13,13 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.11 (Mar 17th, 2024)
+
+* Add `$message` pipeline item
+* Writeonly fields considered as scalar fields
+* Add `ids` to identity checker args
+* Fix optional type resolving into nested bug
+
 ### 0.2.10 (Mar 15th, 2024)
 
 * Add interface decorators
