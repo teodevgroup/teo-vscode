@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### 0.2.13 (Mar 23rd, 2024)
+
+* Add optional argument `otherwise` to `$when`
+
 ### 0.2.12 (Mar 22nd, 2024)
 
 * Add value as type expression
