@@ -80,7 +80,10 @@ repository:
   # keywords
   keywords:
     name: storage.modifier.keyword.teo
-    match: (let|declare|model|enum|interface|middlewares?|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record)
+    match: (let|declare|model|enum|interface|middlewares?|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record|type)
+  typeKeyword:
+    name: storage.modifier.keyword.teo
+    match: (type)
   # literals
   nullLiteral:
     name: constant.language.null.teo
@@ -229,10 +232,21 @@ repository:
     patterns:
       - include: "#namedArgument"
       - include: "#expression"
-      - include: "#comma"      
+      - include: "#comma"
+  valueAsTypeExpression:
+    name: source.teo.expression.valueAsType
+    match: "(type) ([A-Za-z0-9_]+)"
+    captures:
+      1:
+        name: storage.modifier.keyword.teo
+      2:
+        name: entity.name.type.config.teo
+    patterns:
+      - include: "#typeExpression"
   expression:
     name: source.teo.expression
     patterns:  
+      - include: "#valueAsTypeExpression"
       - include: "#primitiveLiteral"
       - include: "#dictionaryLiteral"
       - include: "#arrayLiteral"
