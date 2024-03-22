@@ -1,5 +1,12 @@
 ## CHANGELOG
 
+### 0.2.12 (Mar 22nd, 2024)
+
+* Add value as type expression
+* Add permission pipeline items
+* Remove deprecated test config block
+* Fix argument list resolving bug
+
 ### 0.2.11 (Mar 17th, 2024)
 
 * Add `$message` pipeline item

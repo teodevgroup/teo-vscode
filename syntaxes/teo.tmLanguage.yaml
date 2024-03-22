@@ -5,7 +5,7 @@ fileTypes:
   - teo
 
 variables:
-  configKeywords: (entity|client|connector|server|debug|test)
+  configKeywords: (entity|client|connector|server|debug)
   builtinTypes: Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId|Any
 
 patterns:

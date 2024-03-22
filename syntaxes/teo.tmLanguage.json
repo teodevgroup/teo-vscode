@@ -584,7 +584,7 @@
     },
     "configStatement": {
       "name": "source.teo.embedded.config",
-      "begin": "^\\s*(entity|client|connector|server|debug|test)(\\s+([_A-Za-z][_A-Za-z0-9]*))?\\s+({)",
+      "begin": "^\\s*(entity|client|connector|server|debug)(\\s+([_A-Za-z][_A-Za-z0-9]*))?\\s+({)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.config.teo"
