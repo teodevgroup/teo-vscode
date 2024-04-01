@@ -5,7 +5,7 @@ fileTypes:
   - teo
 
 variables:
-  configKeywords: (entity|client|connector|server|debug)
+  configKeywords: (entity|client|connector|server|admin|debug)
   builtinTypes: Int64|Int32|Int|String|DateTime|Date|Bytes|Decimal|Float64|Float32|Float|Bool|ObjectId|Any
 
 patterns:
@@ -80,7 +80,7 @@ repository:
   # keywords
   keywords:
     name: storage.modifier.keyword.teo
-    match: (let|declare|model|enum|interface|middlewares?|form|json|handler|group|import|connector|client|entity|server|autoseed dataset|autoseed|dataset|group|record|type)
+    match: (let|declare|model|enum|interface|middlewares?|form|json|handler|group|import|connector|client|entity|server|admin|autoseed dataset|autoseed|dataset|group|record|type)
   typeKeyword:
     name: storage.modifier.keyword.teo
     match: (type)

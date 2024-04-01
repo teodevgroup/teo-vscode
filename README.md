@@ -13,6 +13,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.14 (Apr 1st, 2024)
+
+* Add `admin` config block
+
 ### 0.2.13 (Mar 23rd, 2024)
 
 * Add optional argument `otherwise` to `$when`
