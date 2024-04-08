@@ -13,6 +13,10 @@ Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.15 (Apr 8th, 2024)
+
+* Add `admin` library
+
 ### 0.2.14 (Apr 1st, 2024)
 
 * Add `admin` config block
