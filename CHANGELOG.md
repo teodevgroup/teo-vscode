@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+### 0.2.16 (Apr 24th, 2024)
+
+* Add `Language` to `admin` namespace
+* Fix `identity` handler arg type
+
 ### 0.2.15 (Apr 8th, 2024)
 
 * Add `admin` library
