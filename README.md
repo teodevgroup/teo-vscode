@@ -1,7 +1,6 @@
 # Teo Language Support
 
-This extension provides enhanced Teo language and code intellisense support for
-Visual Studio Code.
+This extension provides enhanced Teo language and code intellisense support for Visual Studio Code.
 
 ## Features
 
