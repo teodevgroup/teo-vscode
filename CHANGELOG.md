@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### 0.2.17 (May 4th, 2024)
+
+* Add admin decorators
+
 ### 0.2.16 (Apr 24th, 2024)
 
 * Add `Language` to `admin` namespace
