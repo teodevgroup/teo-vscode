@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### 0.2.18 (May 8th, 2024)
+
+* Fix doc comment name parsing
+
 ### 0.2.17 (May 4th, 2024)
 
 * Add admin decorators
