@@ -12,6 +12,10 @@ This extension provides enhanced Teo language and code intellisense support for 
 
 ## Release Notes
 
+### 0.2.19 (May 18th, 2024)
+
+* Remove code formatting temporarily
+
 ### 0.2.18 (May 8th, 2024)
 
 * Fix doc comment name parsing
