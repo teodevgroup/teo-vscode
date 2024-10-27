@@ -12,6 +12,10 @@ This extension provides enhanced Teo language and code intellisense support for 
 
 ## Release Notes
 
+### 0.3.0 (Unreleased)
+
+* Updated middleware syntax
+
 ### 0.2.19 (May 18th, 2024)
 
 * Remove code formatting temporarily
