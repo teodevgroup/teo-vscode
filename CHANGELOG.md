@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### 0.3.0 (Nov 18th, 2024)
+
+* Updated middleware syntax
+
 ### 0.2.19 (May 18th, 2024)
 
 * Remove code formatting temporarily
